@@ -1,6 +1,6 @@
 ---
 title: "Hello World"
-date: 2023-05-31T15:34:30+02:00
+date: 2023-05-31 00:00:00 +0200
 categories: [Introduction]
 tags: [INTRO]     # TAG names should always be lowercase
 ---

@@ -10,12 +10,16 @@
 
 Computer Graphics:
   Rendering, Modeling, Animation, Simulation, etc.
+  
 Computer Vision:
   Image Processing, Motion Tracking, etc.
+  
 Digital Art:
   3D Modeling, Animation, Short Film, VFX, Editing, Color Grading, Photography, etc.
+  
 Geek Stuff:
   3D Printing, Embedded Systems, Server System Building, etc.
+  
 Sound & Music:
   Arrangement, Mixing, Mastering, Video Game Music, Violin, etc.
 

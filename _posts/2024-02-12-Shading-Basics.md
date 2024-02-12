@@ -25,7 +25,7 @@ $$c_{light} = c_{light0}(\frac{r_0}{max(r,r_{min})})^2,\ in\ CryEngine$$
 
 $$f_{win}(r)=(1-(\frac{r}{r_{max}})^4)^{+2}$$
 
-![picture 0](../images/dd7f0ee9ea6bd1406f4019a06c3a5b37567f251b9558ac38ccf9ed04c2f4781b.png)  
+![picture 0](/images/dd7f0ee9ea6bd1406f4019a06c3a5b37567f251b9558ac38ccf9ed04c2f4781b.png)  
 
 > Application requirements will affect the choice of method used. For example, having the derivative equal to 0 at $r_{max}$ is particularly important when the distance attenuation function is sampled at a relatively low spatial frequency (e.g., in light maps or per-vertex). CryEngine does not use light maps or vertex lighting, so it employs a simpler adjustment, switching to linear falloff in the range between 0.8$r_{max}$ and $r_{max}$ 
 
@@ -39,7 +39,8 @@ $$f_{dist}(r)=(1-(\frac{r}{r_{max}})^2)^{+2}$$
 > For example, the Unreal Engine, used for both realistic and stylized games, has two modes for light falloff: an **inverse-square mode**, and an **exponential falloff mode** that can be tweaked to create a variety of attenuation curves. The developers of the game Tomb Raider (2013) used **spline-editing tools** to author falloff curves, allowing for even greater control over the curve shape.
 
 ## Spotlights
-![picture 1](image.png)
+
+![picture 1](/posts/image.png){: width="972" height="589" }
 
 For example, the function $f_{dirF} (l)$ is used in the Frostbite game engine , and the function $f_{dirT}(l)$ is used in the three.js browser graphics library :
 

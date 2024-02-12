@@ -56,6 +56,7 @@ Different types of lights can be defined by using other methods to compute the l
 In reality, light sources have size and shape, and they illuminate surface points from **multiple directions**. In rendering, such lights are called *area lights*, and their use in real-time appli- cations is steadily increasing. Area-light rendering techniques fall into two cate- gories: 
 - those that simulate the softening of shadow edges that results from the area light being partially occluded (Section 7.1.2)
 -  those that simulate the effect of the area light on surface shading (Section 10.1). 
- > This second category of lighting is most noticeable for smooth, mirror-like surfaces, where the light’s shape and size can be clearly discerned in its reflection.
+> This second category of lighting is most noticeable for smooth, mirror-like surfaces, where the light’s shape and size can be clearly discerned in its reflection.
 
- # Implementing Shading Models
+# Implementing Shading Models
+

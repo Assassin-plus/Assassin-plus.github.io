@@ -2,6 +2,8 @@
 title: "Shading Basics | Real-time Rendering Chapter5"
 date: 2024-02-01 00:00:00 +0200
 categories: [RTR4]
+math: true
+mermaid: true
 tags: [graphics]     # TAG names should always be lowercase
 ---
 # Light Sources
@@ -42,4 +44,3 @@ In reality, light sources have size and shape, and they illuminate surface point
  > This second category of lighting is most noticeable for smooth, mirror-like surfaces, where the light’s shape and size can be clearly discerned in its reflection.
 
  # Implementing Shading Models
- 

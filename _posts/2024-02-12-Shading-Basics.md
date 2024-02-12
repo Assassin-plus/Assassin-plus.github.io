@@ -11,18 +11,28 @@ tags: [graphics]     # TAG names should always be lowercase
 ## Point Light / Omni Light
 - A point light is a light source that emits light in all directions evenly from a single point in space.
 - The intensity of the light decreases with the square of the distance from the light source.
+
   $$c_{light} = c_{light0}(\frac{r_0}{r})^2$$
+
 - There're two problems when r approaches 0 and infinity.
 - $c_{light}$ goes to infinity when $r \rightarrow0$ 
+
   $$c_{light} = c_{light0}\frac{r_0^2}{r^2+\epsilon},\epsilon = 1cm^2 \ in\ Unreal\ Engine$$
+
 $$c_{light} = c_{light0}(\frac{r_0}{max(r,r_{min})})^2,\ in\ CryEngine$$
+
 - $c_{light}\rightarrow 0 $ when r is large enough yet needs calculation. So we need this to become 0 at $r_{max}$ and its derivative at the same time.
+
 $$f_{win}(r)=(1-(\frac{r}{r_{max}})^4)^{+2}$$
+
 ![picture 0](../images/dd7f0ee9ea6bd1406f4019a06c3a5b37567f251b9558ac38ccf9ed04c2f4781b.png)  
+
 > Application requirements will affect the choice of method used. For example, having the derivative equal to 0 at $r_{max}$ is particularly important when the distance attenuation function is sampled at a relatively low spatial frequency (e.g., in light maps or per-vertex). CryEngine does not use light maps or vertex lighting, so it employs a simpler adjustment, switching to linear falloff in the range between 0.8$r_{max}$ and $r_{max}$ 
 
 For some applications, matching the inverse-square curve is not a priority, so some other function entirely is used.
+
 $$c_{light}(r)=c_{light0}f_{dist}(r)$$
+
 > In some cases, the use of non-inverse-square falloff functions is driven by performance constraints. For example, the game Just Cause 2 needed lights that were extremely inexpensive to compute. This dictated a falloff function that was *simple to compute, while also being smooth enough to avoid per-vertex lighting artifacts*
 $$f_{dist}(r)=(1-(\frac{r}{r_{max}})^2)^{+2}$$
 
@@ -30,9 +40,13 @@ $$f_{dist}(r)=(1-(\frac{r}{r_{max}})^2)^{+2}$$
 
 ## Spotlights
 ![picture 1](image.png)
+
 For example, the function $f_{dirF} (l)$ is used in the Frostbite game engine , and the function $f_{dirT}(l)$ is used in the three.js browser graphics library :
+
 $$t = (\frac{\cos\theta_s-\cos\theta_u}{\cos\theta_p-cos\theta_u})^\plusmn$$
+
 $$f_{dirF} (l) = t^2$$
+
 $$f_{dirT}(l)=smoothstep(t)=t^2(3-2t)$$
 
 ## Other Light Types

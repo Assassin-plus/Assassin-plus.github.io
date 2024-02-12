@@ -40,7 +40,7 @@ $$f_{dist}(r)=(1-(\frac{r}{r_{max}})^2)^{+2}$$
 
 ## Spotlights
 
-![picture 1](/posts/image.png){: width="972" height="589" }
+![picture 1](/images/theta.png){: width="972" height="589" }
 
 For example, the function $f_{dirF} (l)$ is used in the Frostbite game engine , and the function $f_{dirT}(l)$ is used in the three.js browser graphics library :
 

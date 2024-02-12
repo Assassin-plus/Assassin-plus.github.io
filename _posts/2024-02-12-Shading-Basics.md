@@ -1,9 +1,10 @@
 ---
-title: "Shading Basics | Real-time Rendering Chapter5"
-date: 2024-02-01 00:00:00 +0200
-categories: [RTR4]
+title: "Light Sources | Real-time Rendering Chapter 5.2"
+date: 2024-02-12 00:00:00 +0200
+categories: [RTR4,Shading]
 math: true
 mermaid: true
+toc: true
 tags: [graphics]     # TAG names should always be lowercase
 ---
 # Light Sources
@@ -57,6 +58,4 @@ In reality, light sources have size and shape, and they illuminate surface point
 - those that simulate the softening of shadow edges that results from the area light being partially occluded (Section 7.1.2)
 -  those that simulate the effect of the area light on surface shading (Section 10.1). 
 > This second category of lighting is most noticeable for smooth, mirror-like surfaces, where the light’s shape and size can be clearly discerned in its reflection.
-
-# Implementing Shading Models
 

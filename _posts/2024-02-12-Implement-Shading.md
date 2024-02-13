@@ -105,6 +105,7 @@ gl.compileShader(fragmentShader);
 
 ## Material Systems
 
+### Composing Shaders
 One of the most important tasks of a material system is dividing various *shader functions* into separate elements and controlling how these are combined.
 - Composing **surface shading** with **geometric processing**, such as rigid transforms, vertex blending, morphing, tessellation, instancing, and clipping. These bits of functionality vary independently: Surface shading depends on the material, and geometry processing depends on the mesh. 
 -  Composing **surface shading** with **compositing operations** such as **pixel discard** and **blending**. This is particularly relevant to mobile GPUs, where blending is typically performed in the pixel shader. It is often desirable to select these operations independently of the material used for surface shading.
@@ -129,3 +130,18 @@ Even though the full burden is no longer handled only at compile time, the overa
 
   > deferred shading techniques (discussed in Chapter 20) enforce a similar structure, with the G-buffer serving as the interface.
   {: .prompt-warning }
+
+### Multi-platform Material Systems
+Besides composition, there are several other important design considerations for modern material systems, such as the need to support multiple platforms with **minimal duplication** of shader code.
+> This includes variations in functionality to account for performance and capability differences among platforms, shading languages, and APIs.
+{: .prompt-info }
+
+- The Destiny shader system is a representative solution to this type of problem. It uses a **proprietary preprocessor layer** that takes shaders written in a custom shading language dialect. This allows writing *platform-independent* materials with *automatic translation* to different shading languages and implementations.
+
+### Good Performance
+Besides specialized compilation of shading variants, there are a few other common optimizations the material system can perform.
+- The Destiny shader system and the Unreal Engine *automatically detect* computations that are **constant** across a draw call and move it outside of the shader.
+- Another example is the scoping system used in Destiny to differentiate between constants that are **updated at different frequencies** (e.g., once per frame, once per light, once per object) and update each set of constants at the appropriate times to reduce API overhead.
+
+> implementing a shading equation is a matter of deciding what parts can be simplified, how frequently to compute various expressions, and how the user is able to modify and control the appearance.
+{: .prompt-warning }

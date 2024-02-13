@@ -1,6 +1,6 @@
 ---
 title: "Implement Shading Model | Real-time Rendering Chapter 5.3"
-date: 2024-02-12 00:00:00 +0200
+date: 2024-02-13 00:00:00 +0200
 categories: [RTR4,Shading]
 math: true
 mermaid: true
@@ -43,7 +43,4 @@ shading model in the pixel shader, and calculate the rest in the vertex shader. 
 - Before the shader code proper, the shader source includes definitions of the shader inputs and outputs.
 > Since these are point lights, the definition for each one includes a position and a color. These are defined as vec4 instead of vec3 to conform to the restrictions of the GLSL std140 data layout standard. Although, as in this case, the std140 layout can lead to some wasted space, it simplifies the task of ensuring consistent data layout between CPU and GPU, which is why we use it in this sample. 
 > The array of Light structs is defined inside a named uniform block, which is a GLSL feature for binding a group of uniform variables to a buffer object for faster data transfer. The array length is defined to be equal to the maximum number of lights that the application allows in a single draw call. As we will see later, the application replaces the MAXLIGHTS string in the shader source with the correct value (10 in this case) before shader compilation. The uniform integer uLightCount is the actual number of active lights in the draw call.
-{: .prompt-tip}
-
-> An example showing the `tip` type prompt.
 {: .prompt-tip }

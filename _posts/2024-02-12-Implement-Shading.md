@@ -111,10 +111,21 @@ One of the most important tasks of a material system is dividing various *shader
 -  Composing the operations used to compute the shading model **parameters** with the computation of the **shading model itself**. This allows authoring the shading model implementation once and reusing it in combination with various different methods for computing the shading model parameters.
 -  Composing individually **selectable material features** with each other, the selection logic, and the rest of the shader. This enables writing the implementation of each feature separately.
 -  Composing the shading model and computation of its parameters **with light source evaluation**: computing the values of $c_{light}$ and $\vec{l}$ at the shaded point for each light source. Techniques such as deferred rendering change the structure of this composition.
+
 > GPU shaders do not allow for post-compilation linking of code fragments. The program for each shader stage is compiled **as a unit**. The only way that the material system can implement all these types of composition is **at the source-code level**. This primarily involves *string operations* such as *concatenation* and *replacement*, often performed via C-style preprocessing directives such as #include, #if, and #define.
 {: .prompt-info }
 
 > Today much of the functionality variation, such as the number of lights, is handled at runtime. However, adding a large amount of functional variation to a shader incurs a different cost: an increase in **register count** and a **corresponding reduction in occupancy**, and thus performance. So, **compile-time variation** is still valuable. It avoids including complex logic that will never be executed.
 {: .prompt-tip }
 
-Even though the full burden is no longer handled only at compile time, the overall complexity and number of variations keep increasing, so a large number of shader variants still need to be compiled. Although these are sometimes presented as mutually exclusive system architectures, these strategies can be—and usually are—combined in the same system.
+Even though the full burden is no longer handled only at compile time, the overall complexity and number of variations keep increasing, so a large number of shader variants still need to be compiled. Although these are sometimes presented as mutually exclusive system architectures, these strategies can be—and usually are—combined in the same system:
+
+- **Code reuse**—Implementing functions in shared files, using **#include** preprocessor directives to access those functions from any shader that needs them.
+- **Subtractive**—Use a combination of compile-time preprocessor conditionals and dynamic branching to remove unused parts and to switch between mutually exclusive alternatives.
+- **Additive**—Various bits of functionality are defined as nodes with input and output connectors, and these are composed together.
+- **Template-based**—An interface is defined, into which different implementations can be plugged as long as they conform to that interface. This is a bit more formal than the additive strategy and is typically used for larger chunks of func- tionality.
+  > A common example for such an interface is the separation between the calculation of shading model parameters and the computation of the shading model itself. The Unreal Engine has different “**material domains**,” including *the Surface domain* for computing shading model parameters and *the Light Function domain* for computing a scalar value that modulates clight for a given light source. A similar “**surface shader**” structure also exists in Unity .
+  {: .prompt-info }
+
+  > deferred shading techniques (discussed in Chapter 20) enforce a similar structure, with the G-buffer serving as the interface.
+  {: .prompt-warning }

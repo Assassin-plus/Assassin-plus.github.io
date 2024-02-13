@@ -46,3 +46,61 @@ shading model in the pixel shader, and calculate the rest in the vertex shader. 
 > Since these are point lights, the definition for each one includes a position and a color. These are defined as vec4 instead of vec3 to conform to the restrictions of the GLSL std140 data layout standard. Although, as in this case, the std140 layout can lead to some wasted space, it simplifies the task of ensuring consistent data layout between CPU and GPU, which is why we use it in this sample. The array of Light structs is defined inside a named uniform block, which is a GLSL feature for binding a group of uniform variables to a buffer object for faster data transfer. The array length is defined to be equal to the maximum number of lights that the application allows in a single draw call. As we will see later, the application replaces the MAXLIGHTS string in the shader source with the correct value (10 in this case) before shader compilation. The uniform integer uLightCount is the actual number of active lights in the draw call.
 {: .prompt-tip }
 
+Our goal here is to give a sense of how shaders are treated as separate processors, with their own programming environment. For actual code interpretation, please refer to original book.
+
+pixel shader code:
+```glsl
+in vec3 vPos;
+in vec3 vNormal; 
+out vec4 outColor;
+
+struct Light { 
+  vec4 position;
+  vec4 color; 
+};
+uniform LightUBlock {
+  Light uLights[MAXLIGHTS];
+};
+uniform uint uLightCount;
+
+vec3 lit(vec3 l, vec3 n, vec3 v) {
+  vec3 r_l = reflect(-l, n);
+  float s = clamp(100.0 * dot(r_l, v) - 97.0, 0.0, 1.0); 
+  vec3 highlightColor = vec3(2,2,2);
+  return mix(uWarmColor , highlightColor , s);
+}
+void main () {
+  vec3 n = normalize(vNormal);
+  vec3 v = normalize(uEyePosition.xyz - vPos);
+  outColor = vec4(uFUnlit , 1.0);
+  for (uint i = 0u; i < uLightCount; i++) {
+    vec3 l = normalize(uLights[i].position.xyz - vPos); 
+    float NdL = clamp(dot(n, l), 0.0, 1.0);
+    outColor.rgb += NdL * uLights[i].color.rgb * lit(l,n,v);
+  } 
+}
+```
+
+vertex shader code:
+```glsl
+layout(location=0) in vec4 position; 
+layout(location=1) in vec4 normal; 
+out vec3 vPos;
+out vec3 vNormal;
+
+void main() {
+  vec4 worldPosition = uModel * position; 
+  vPos = worldPosition.xyz;
+  vNormal = (uModel * normal).xyz; 
+  gl_Position = viewProj * worldPosition;
+}
+
+var fSource = document.getElementById("fragment").text.trim(); 
+var maxLights = 10;
+fSource = fSource.replace(/MAXLIGHTS/g, maxLights.toString());
+var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER); 
+gl.shaderSource(fragmentShader , fSource); 
+gl.compileShader(fragmentShader);
+```
+
+## Material Systems

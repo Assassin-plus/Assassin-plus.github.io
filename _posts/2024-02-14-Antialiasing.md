@@ -72,3 +72,30 @@ MSAA is faster than a pure supersampling scheme because the fragment is shaded o
     {: .prompt-tip }
   > If the number of colors stored is exceeded, a stored color is evicted and its samples are marked as unknown. These samples do not contribute to the final color. For most scenes there are relatively few pixels containing three or more visible opaque fragments that are radically different in shade, so this scheme performs well in practice.
     {: .prompt-tip }
+
+- Once all geometry has been rendered to a multiple-sample buffer, a resolve operation is then performed. This procedure *averages the sample colors* together to determine the color for the pixel. It is worth noting that a problem can arise when using multisampling with **high dynamic range** color values. In such cases, to avoid artifacts you normally need to **tone-map** the values before the resolve.
+
+- By default, MSAA is resolved with a **box** filter. On modern GPUs pixel or compute shaders can access the MSAA samples and use whatever reconstruction filter is desired, including one that samples from the surrounding pixels’ samples. A wider filter can reduce aliasing, though at the loss of sharp details.
+  > the cubic smoothstep and B-spline filters with a filter width of **2 or 3 pixels** gave the best results overall. There is also a performance cost, as even emulating the default box filter resolve will take longer with a **custom shader**, and a wider filter kernel means increased sample access costs.
+  {: .prompt-tip }
+
+### Temporal Antialiasing
+A single image is generated, possibly with MSAA or another method, and the previous images are blended in. Usually just two to four frames are used.
+Older images may be given exponentially less weight, though this can have the effect of the frame **shimmering** if the viewer and scene do not move, so often equal weighting of just the last and current frame is done. 
+With each frame’s samples in a different subpixel location, the weighted sum of these samples gives a better coverage estimate of the **edge** than a single frame does.
+**No** additional samples are needed for each frame, which is what makes this type of approach so appealing. It is even possible to use temporal sampling to allow generation of a **lower-resolution** image that is upscaled to the display’s resolution. In addition, illumination methods or other techniques that require many samples for a good result can instead use **fewer samples** each frame, since the results will be blended over several frames.
+
+- Rapidly moving objects or quick camera moves can cause **ghosting**. 
+    - One solution to ghosting is to perform such antialiasing on only slow-moving objects. 
+
+    - Another important approach is to use reprojection (Section 12.2) to better correlate the previous and current frames’ objects. 
+    > In such schemes, objects generate motion vectors that are stored in a separate “velocity buffer” (Section 12.5). These vectors are used to **correlate the previous frame with the current one**, i.e., the vector is subtracted from the current pixel location to find the previous frame’s color pixel for that object’s surface location. Samples unlikely to be part of the surface in the current frame are discarded.
+    {: .prompt-tip }
+
+Because *no extra samples*, and so relatively *little extra work*, are needed for temporal antialiasing, there has been a strong interest and wider adoption of this type of algorithm in recent years. Some of this attention has been because **deferred shading techniques** (Section 20.1) are not compatible with MSAA and other multisampling support.
+
+## Sample Patterns
+
+
+
+## Morphological Methods

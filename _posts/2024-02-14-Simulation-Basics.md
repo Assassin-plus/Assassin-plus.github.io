@@ -53,5 +53,13 @@ Calculate the distance at any timestep, if the distance changes sign, then there
 
 ## Determination
 
-If there is a collision in a timestep, we need to determine the **exact time** during the timestep, and the exact collision point. If the simulation uses a Euler integration, we can get the position at the beginning and the end of the timestep, and use **linear interpolation** to get the collision point.
+If there is a collision in a timestep, we need to determine the **exact time** during the timestep. If the simulation uses a Euler integration, we can get the position at the beginning and the end of the timestep, and use **linear interpolation** to get the collision time.
+
+We can get the distance d. Given the distance at the beginning of the timestep $d^{[n]}$ and the end of the timestep $d^{[n+1]}$, we can use the following equation to get the collision time.
+$$ f = \frac{d^{[n]}}{d^{[n]} - d^{[n+1]}} $$
+which is the proportion of the timestep.
+
+In order to get the collision point, we can re-calculate the integration using the exact time $fh$. Then we can get the collision point on the plane. Afterwaard, we need to get the collision response and integrate the remaining timestep.
+
+## Response
 

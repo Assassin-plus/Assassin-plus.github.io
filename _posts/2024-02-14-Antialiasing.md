@@ -96,6 +96,41 @@ Because *no extra samples*, and so relatively *little extra work*, are needed fo
 
 ## Sample Patterns
 
+Principle:
+humans are most disturbed by aliasing on **near- horizontal and near-vertical edges**. Edges with near *45 degrees* slope are next most disturbing.
 
+### Rotated grid supersampling
+
+Rotated grid supersampling (RGSS) uses a rotated square pattern to give more vertical and horizontal resolution within the pixel. 
+
+The RGSS pattern is a form of **Latin hypercube** or **N-rooks sampling**, in which n samples are placed in an n×n grid, with one sample per row and column. 
+
+N-rooks is a start at creating a good sampling pattern, but it is not sufficient. For example, the samples could all be places along the diagonal of a subpixel grid and so give a poor result for edges that are nearly parallel to this diagonal.
+
+> For better sampling we want to avoid putting two samples near each other. We also want a **uniform** distribution, spreading samples evenly over the area. To form such patterns, stratified sampling techniques such as **Latin hypercube sampling** are combined with other methods such as *jittering, Halton sequences, and Poisson disk sampling*.
+{ : .prompt-tip }
+
+In practice GPU manufacturers usually hard-wire such sampling patterns into their hardware for multisampling antialiasing.
+![picture 1](</images/截屏2024-02-15 13.47.27.png>)
+
+a basic Halton sequence works better than any MSAA pattern provided by the GPU. **A Halton sequence** generates samples in space that appear random but have low discrepancy, that is, they are well distributed over the space and none are clustered.
+
+### Moire Fringes
+
+A scene can be made of objects that are arbitrarily small on the screen, meaning that no sampling rate can ever perfectly capture them. If these tiny objects or features form a pattern, sampling at constant intervals can result in **Moir ́e fringes** and other interference patterns.One solution is to use **stochastic sampling**, which gives a more randomized pattern.
+
+A pattern with less structure helps, but it can still exhibit aliasing when repeated pixel to pixel. One solution is use a different sampling pattern at each pixel, or to change each sampling location over time. 
+
+A few other GPU-supported algorithms are worth noting.
+- One real-time antialiasing scheme that lets samples affect more than one pixel is NVIDIA’s older **Quincunx** method. Quincunx multisampling antialiasing uses this pattern, putting the four outer samples at the corners of the pixel. Each corner sample value is distributed to its four neighboring pixels. 
+- Instead of weighting each sample equally (as most other real-time schemes do), the center sample is given a weight of 1/2 , and each corner sample has a weight of 1/8 . Because of this sharing, an average of only two samples are needed per pixel, and the results are considerably better than two-sample FSAA methods. This pattern approximates a two-dimensional tent filter.
+- Quincunx sampling can also be applied to **temporal antialiasing** by using a single sample per pixel. Each frame is offset half a pixel in each axis from the frame before, with the offset direction alternating between frames. *The previous frame provides the pixel corner samples*, and bilinear interpolation is used to rapidly compute the contribution per pixel. The result is averaged with the current frame. Equal weighting of each frame means there are **no shimmer artifacts for a static view**. The issue of aligning moving objects is still present, but the scheme itself is simple to code and gives a much better look while using only one sample per pixel per frame.
+
+---
+When used in a single frame, Quincunx has a low cost of only two samples by sharing samples at the pixel boundaries. The RGSS pattern is better at capturing more gradations of nearly horizontal and vertical edges. First developed for mobile graphics, the **FLIPQUAD** pattern combines both of these desirable features. Its advantages are that the cost is only two samples per pixel, and the quality is similar to RGSS (which costs four samples per pixel).
+
+![picture 1](</images/截屏2024-02-15 14.40.28.png>)
+
+> \#TODO *(Further Reading)* Like Quincunx, the two-sample FLIPQUAD pattern can also be used with temporal antialiasing and spread over two frames. Drobot tackles the question of which two-sample pattern is best in his hybrid reconstruction antialiasing (HRAA) work. He explores different sampling patterns for temporal antialiasing, finding the FLIPQUAD pattern to be the best of the five tested. A checkerboard pattern has also seen use with temporal antialiasing. El Mansouri  discusses using twosample MSAA to create a checkerboard render to reduce shader costs while addressing aliasing issues. Jimenez uses SMAA, temporal antialiasing, and a variety of other techniques to provide a solution where antialiasing quality can be changed in response to rendering engine load. Carpentier and Ishiyama sample on edges, rotating the sampling grid by 45◦. They combine this temporal antialiasing scheme with FXAA (discussed later) to efficiently render on higher-resolution displays.
 
 ## Morphological Methods

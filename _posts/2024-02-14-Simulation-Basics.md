@@ -63,3 +63,39 @@ In order to get the collision point, we can re-calculate the integration using t
 
 ## Response
 
+After detecting the collision, we need to calculate the response. Suppose we have already got the response, how can we alter the simulation cycle to deal with the response?
+
+```
+// h is the timestep, n is the iteration number, t is the current time
+//s is the state of the object (position, velocity, etc.)
+s = s0;n = 0;t = 0;
+while (t < tmax) do //invirance: s is the state at t
+{
+    //output the n'th state
+    TimestepRemaining = h;
+    Timestep = TimestepRemaining;   // simulate the entire timestep
+    while (TimestepRemaining > 0) do
+    {
+        s_dot = GetDerivative(s);  //get the acceleration
+        s_new = Integrate(s, s_dot, Timestep); 
+        if CollisionBetween(s, s_new) then
+        {
+            //calculate the first collision and re-integrate
+            Calculate f;
+            Timestep = f * Timestep;
+            s_new = Integrate(s, s_dot, Timestep);
+            s_new = CollisionResponse(s, s_new);
+        }
+        TimestepRemaining = TimestepRemaining - Timestep;
+        s = s_new;
+    }
+    n = n + 1;
+    t = n * h;
+}
+```
+
+- If there is no collision, the whole process is the same as the Euler integration. After the if, the inside of the while loop only runs once.
+- If there is a collision, we need to re-integrate the time, and the new state will be exactly at the time of the collision. Because we haven't integrated the entire timestep, we need to update $TimestepRemaining$ to the remaining time. Also we may encounter multiple collisions in a single timestep, we need to iterate until the entire original timestep is integrated.
+- Sometimes, animators would rather use a fixed timestep, which is essential for real-time applications or synchronization with multiple simulation threads. In this case, animators will sacrifice the accuracy of the simulation which will be discussed in Chapter 4.4.3
+> When $Timestep$ is small enough to get its floating point representation 0, we will encounter a dead loop. A common solution is to change the condition to $TimestepRemaining > \epsilon$, and we will discuss this further in Chapter 3.3.1.
+{: .prompt-warning }

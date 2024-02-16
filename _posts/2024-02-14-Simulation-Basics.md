@@ -98,4 +98,5 @@ while (t < tmax) do //invirance: s is the state at t
 - If there is a collision, we need to re-integrate the time, and the new state will be exactly at the time of the collision. Because we haven't integrated the entire timestep, we need to update $TimestepRemaining$ to the remaining time. Also we may encounter multiple collisions in a single timestep, we need to iterate until the entire original timestep is integrated.
 - Sometimes, animators would rather use a fixed timestep, which is essential for real-time applications or synchronization with multiple simulation threads. In this case, animators will sacrifice the accuracy of the simulation which will be discussed in Chapter 4.4.3
 > When $Timestep$ is small enough to get its floating point representation 0, we will encounter a dead loop. A common solution is to change the condition to $TimestepRemaining > \epsilon$, and we will discuss this further in Chapter 3.3.1.
-{: .prompt-warning }
+{: .prompt-tip }
+

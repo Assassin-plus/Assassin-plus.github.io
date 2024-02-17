@@ -21,12 +21,15 @@ For a signal to be sampled properly (i.e., so that it is possible to reconstruct
 However, at times it is possible to know when a signal is band-limited. One example is when *a texture is applied to a surface*. It is possible to compute the frequency of the **texture samples** compared to the **sampling rate of the pixel**. If this frequency is lower than the Nyquist limit, then no special action is needed to properly sample the texture. If the frequency is too high, then a variety of algorithms are used to **band-limit the texture**.
 
 ### Reconstruction Filters
+
 The sinc function is the perfect reconstruction filter when the sampling frequency is 1.0 (i.e., the maximum frequency of the sampled signal must be smaller than 1/2). This is useful when resampling the signal (next section). However, the filter width of the sinc is **infinite** and is **negative** in some areas, so it is rarely useful in practice. For applications where negative filter values are undesirable or impractical, filters with no negative lobes (often referred to generically as **Gaussian filters**, since they either derive from or resemble a Gaussian curve) are typically used.
+
 After using any filter, a continuous signal is obtained. However, in computer graphics we cannot display continuous signals directly, but we can use them to **resample the continuous signal to another size**, i.e., either enlarging the signal, or diminishing it. This topic is discussed next.
 
 ### Resampling
 
 Resampling is used to magnify or minify a sampled signal. 
+
 Magnification:
 Assume the sampled signal is reconstructed as shown in the previous section. Intuitively, since the signal now is perfectly reconstructed and continuous, all that is needed is to **resample** the reconstructed signal at the desired intervals.
 
@@ -61,6 +64,7 @@ The general strategy of screen-based antialiasing schemes is to use a sampling p
 
 - **Multisampling antialiasing (MSAA)** lessens the high computational costs by computing the surface’s shade once per pixel and sharing this result among the samples.
 ![picture 1](</images/截屏2024-02-14 23.35.47.png>)
+
     Pixels may have, say, four (x,y) sample locations per fragment, each with their own color and z-depth, but the pixel shader is evaluated **only once for each object fragment** applied to the pixel. 
     If all MSAA positional samples are covered by the fragment, the shading sample is evaluated at the center of the pixel. If instead the fragment covers fewer positional samples, the shading sample’s position can be **shifted** to better represent the positions covered. Doing so avoids shade sampling off the edge of a texture, for example. This position adjustment is called **centroid sampling** or centroid interpolation and is done <u>automatically by the GPU</u>, if enabled. 
     Centroid sampling avoids off-triangle problems but can cause **derivative computations** to return incorrect values.
@@ -81,8 +85,11 @@ MSAA is faster than a pure supersampling scheme because the fragment is shaded o
 
 ### Temporal Antialiasing
 A single image is generated, possibly with MSAA or another method, and the previous images are blended in. Usually just two to four frames are used.
+
 Older images may be given exponentially less weight, though this can have the effect of the frame **shimmering** if the viewer and scene do not move, so often equal weighting of just the last and current frame is done. 
+
 With each frame’s samples in a different subpixel location, the weighted sum of these samples gives a better coverage estimate of the **edge** than a single frame does.
+
 **No** additional samples are needed for each frame, which is what makes this type of approach so appealing. It is even possible to use temporal sampling to allow generation of a **lower-resolution** image that is upscaled to the display’s resolution. In addition, illumination methods or other techniques that require many samples for a good result can instead use **fewer samples** each frame, since the results will be blended over several frames.
 
 - Rapidly moving objects or quick camera moves can cause **ghosting**. 
@@ -136,7 +143,9 @@ When used in a single frame, Quincunx has a low cost of only two samples by shar
 ## Morphological Methods
 
 Aliasing often results from edges, such as those formed by geometry, sharp shadows, or bright highlights. The knowledge that aliasing has a structure associated with it can be exploited to give a better antialiased result.
+
 This form of antialiasing is performed as a post-process. That is, rendering is done in the usual fashion, then the results are fed to a process that generates the antialiased result. 
+
 Those that rely on additional buffers such as depths and normals can provide better results, such as subpixel reconstruction antialiasing (SRAA), but are then applicable for antialiasing only geometric edges. Analytical approaches, such as *geometry buffer antialiasing* (GBAA) and *distance-to-edge antialiasing* (DEAA), have the renderer compute additional information about where triangle edges are located, e.g., how far the edge is from the center of the pixel.
 
 - The most general schemes need only the color buffer, meaning they can also im- prove edges from shadows, highlights, or various previously applied post-processing techniques, such as silhouette edge rendering (Section 15.2.3).
@@ -159,6 +168,7 @@ Those that rely on additional buffers such as depths and normals can provide bet
 - One approach to ameliorate this problem is to use MSAA coverage masks to improve edge determination.
 
 Morphological antialiasing schemes use only the information that is provided. For example, an object thinner than a pixel in width, such as an electrical wire or rope, will have gaps on the screen wherever it does not happen to cover the center location of a pixel. 
+
 Taking more samples can improve the quality in such situations; image-based antialiasing alone cannot. In addition, execution time can be variable depending on what content is viewed.
 
 ---

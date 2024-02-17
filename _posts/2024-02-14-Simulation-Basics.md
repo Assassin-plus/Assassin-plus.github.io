@@ -47,6 +47,7 @@ When dealing with collision, we need to consider the following three stages. We 
 
 ## Detection
 Considering a object colliding with a plane, we can use the normal method to detect the collision. Given object position $\mathbf{x}$ , plane normal $\mathbf{n}$, and a point on the plane $\mathbf{p}$, we can use the following equation to determine if there is a collision.
+
 $$ d = (\mathbf{x} - \mathbf{p}) \cdot \hat{\mathbf{n}} $$
 
 Calculate the distance at any timestep, if the distance changes sign, then there is a collision.

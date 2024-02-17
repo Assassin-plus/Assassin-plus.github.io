@@ -86,6 +86,7 @@ Other techniques can also help improve the appearance, such as drawing each tran
 
 #### Under Operator
 The over equation can also be modified so that *blending front to back* gives the same result. This blending mode is called the **under** operator:
+
 $$\mathbf{c_O=(\alpha_d c_d+(1-\alpha_d)\alpha_S c_S)/a_O}$$
 
 $$\mathbf{a_O=\alpha_S(1-\alpha_d)+\alpha_d=\alpha_S-\alpha_S\alpha_d+\alpha_d}$$

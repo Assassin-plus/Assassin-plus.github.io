@@ -1,6 +1,6 @@
 ---
 title: "Transparency, Alpha, Compositing | Real-time Rendering Chapter 5.5"
-date: 2024-02-14 00:00:00 +0200
+date: 2024-02-15 00:00:00 +0200
 categories: [RTR4,Shading]
 math: true
 mermaid: true

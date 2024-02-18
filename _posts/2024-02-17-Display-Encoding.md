@@ -29,4 +29,15 @@ The consequence of this fortunate coincidence is that the encoding is roughly *p
 
 When encoding linear color values for display, our goal is to cancel out the effect of the display transfer function, so that whatever value we compute will emit a corresponding radiance level. To maintain this connection, we apply the inverse of the display transfer function to cancel out its nonlinear effect. This process of nullifying the display’s response curve is also called ***gamma correction***. When decoding texture values, we need to apply the display transfer function to generate a linear value for use in shading.
 
-![picture 1](</images/ß截屏2024-02-18 21.08.31.png>)
+![picture 1](</images/截屏2024-02-18 21.08.31.png>)
+
+The standard transfer function for personal computer displays is defined by a *color-space specification* called sRGB. Most APIs controlling GPUs can be set to automatically apply the proper sRGB conversion when values are read from textures or written to the color buffer.
+> As discussed in Section 6.2.2, *mipmap* generation will also take sRGB encoding into account. 
+> *Bilinear* interpolation among texture values will work correctly, by first converting to linear values and then performing the interpolation. 
+> *Alpha blending* is done correctly by decoding the stored value back into linear values, blending in the new value, and then encoding the result.
+{: .prompt-tip }
+
+> It is important to apply the conversion at the **final stage** of rendering, when the values are written to the framebuffer for the display. If post-processing is applied after display encoding, such effects will be computed on nonlinear values, which is usually *incorrect* and will often cause artifacts. 
+{: .prompt-warning }
+ 
+Display encoding can be thought of as a form of compression, one that best preserves the value’s perceptual effect

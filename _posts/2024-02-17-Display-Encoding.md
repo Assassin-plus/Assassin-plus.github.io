@@ -23,3 +23,10 @@ The consequence of this fortunate coincidence is that the encoding is roughly *p
 
 > This near-optimal distribution of values minimizes **banding artifacts** when colors are stored in **limited-precision display buffers** (Section 23.6). The same benefit also applies to textures, which commonly use the same encoding.
 {: .prompt-tip }
+
+
+> The *display transfer function* describes the relationship between the digital values in the display buffer and the radiance levels emitted from the display. For this reason it is also called the *electrical optical transfer function* (EOTF). The display transfer function is part of the hardware, and there are different standards for computer monitors, televisions, and film projectors. There is also a standard transfer function for the other end of the process, image and video capture devices, called the optical electric transfer function (OETF).
+
+When encoding linear color values for display, our goal is to cancel out the effect of the display transfer function, so that whatever value we compute will emit a corresponding radiance level. To maintain this connection, we apply the inverse of the display transfer function to cancel out its nonlinear effect. This process of nullifying the display’s response curve is also called ***gamma correction***. When decoding texture values, we need to apply the display transfer function to generate a linear value for use in shading.
+
+![picture 1](</images/ß截屏2024-02-18 21.08.31.png>)

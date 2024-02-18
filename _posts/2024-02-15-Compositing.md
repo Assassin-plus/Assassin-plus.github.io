@@ -148,6 +148,7 @@ Weighted sum and weighted average transparency techniques are order-independent,
 ![picture 0](</images/截屏2024-02-18 00.29.40.png>)
 
 **Weighted Sum**:
+
 $$\mathbf{c_O}=\sum_{i=1}^n\alpha_ic_i+c_d(1-\sum_{i=1}^n\alpha_i)$$
 
 The two sums are accumulated and stored separately as transparent surfaces are rendered, and at the end of the transparency pass, the equation is evaluated at each pixel. 

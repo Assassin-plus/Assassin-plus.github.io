@@ -157,8 +157,11 @@ Problems with this method are that the first sum **saturates**, i.e., generates 
 The **weighted average** equation is usually preferred because it avoids these problems:
 
 $$\mathbf{c_{sum}}=\sum_{i=1}^n\alpha_ic_i, \alpha_{sum}=\sum_{i=1}^n\alpha_i$$
+
 $$c_{wavg}=\frac{c_{sum}}{\alpha_{sum}},\alpha_{avg}=\frac{\alpha_{sum}}{n}$$
+
 $$u=(1-\alpha_{avg})^n$$
+
 $$\mathbf{c_O}=(1-u)c_{wavg}+uc_d$$
 
 The first line represents the results in the two separate buffers generated during transparency rendering. Each surface contributing to $c_{sum}$ is given an influence weighted by its alpha.

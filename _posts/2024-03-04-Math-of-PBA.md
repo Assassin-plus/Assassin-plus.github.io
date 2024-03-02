@@ -1,6 +1,6 @@
 ---
 title: "Math Background | Intro to Physics-Based Animation"
-date: 2024-03-04 00:00:00 +0200
+date: 2024-03-03 00:00:00 +0200
 categories: [Simulation, GAMES103]
 math: true
 mermaid: true

@@ -8,6 +8,20 @@ toc: true
 tip: true
 tags: [graphics]     # TAG names should always be lowercase
 ---
+- [Basics of Simulation](#basics-of-simulation)
+  - [Model and Simulation](#model-and-simulation)
+- [Collision](#collision)
+  - [Detection](#detection)
+  - [Determination](#determination)
+  - [Response](#response)
+- [Implementation](#implementation)
+  - [Numerical Error](#numerical-error)
+    - [Tolerance](#tolerance)
+    - [Limitation of Tolerance](#limitation-of-tolerance)
+  - [Motionless condition](#motionless-condition)
+- [Collision between Polygon and Point](#collision-between-polygon-and-point)
+
+
 ## Introduction
 > Physically based modeling/animation (PBM) is mainly used to generate *secondary* animation, such as cloth, hair, and environmental effects, which are driven by the motion of the character.
 {: .prompt-tip }
@@ -100,4 +114,59 @@ while (t < tmax) do //invirance: s is the state at t
 - Sometimes, animators would rather use a fixed timestep, which is essential for real-time applications or synchronization with multiple simulation threads. In this case, animators will sacrifice the accuracy of the simulation which will be discussed in Chapter 4.4.3
 > When $Timestep$ is small enough to get its floating point representation 0, we will encounter a dead loop. A common solution is to change the condition to $TimestepRemaining > \epsilon$, and we will discuss this further in Chapter 3.3.1.
 {: .prompt-tip }
+
+As for the friction and collision elasticity, just model them physically and we will skip the details here.
+
+# Implementation
+## Numerical Error
+
+- **Round-off Error**: caused by the finite precision of floating point numbers.
+- **Integration Error**: caused by the numerical integration method.
+- **Discretization Error**: caused by the discretization of the geometry, such as the mesh representation, and voxelization.
+
+### Tolerance
+
+Tolerance is a common method to deal with the numerical error. Anything inside the range of the tolerance is considered to be equal to the true value. 
+
+If there is no tolerance, comparing two numbers would be $a-b=0$, while with tolerance, it would be $|a-b|<\epsilon$.
+Also, when we want to check $a>b$, we can use $a-b<\epsilon$, and for $a<b$, we can use $a-b<-\epsilon$.
+
+### Limitation of Tolerance
+
+First, we cannot set a "good" tolerance for **all situations**. We can never find a tolerance that is small enough to avoid the equal error, yet large enough to catch every numerical error.
+
+Second is the ***incidence intransitivity***. If we have $a \approx b$ and $b \approx c$, we cannot guarantee that $a \approx c$. In order to avoid this, we need to examine the hypothesis of all algorithms, and ensure that we didn't assume the transitivity.
+
+When the tolerance cannot solve the numerical error, we need to analyze where the error comes from, and how it propagates. Then we find out which steps of the algorithm are sensitive to numerical accurancy. Usually, the condition detection is the most important step, cause these would induce evident difference in the result.
+
+> Substitute method includes better numerical integration methods, higher precision floating point numbers, re-construction of calculation or formula, exact calculate predicates, and different discretization methods.
+{: .prompt-tip }
+
+## Motionless condition
+
+```
+if ||v|| < eps1 then
+if exist plane p such that d(p) < eps2 then
+if F dot n < eps3 then
+if ||F_t|| < u_s * ||F_n|| then
+    Motionless = true;
+else
+    Motionless = false;
+```
+
+The logic above describes how to determine if an object is motionless. The first condition is to check if the velocity is small enough. The second condition is to check if the object is on a plane, to avoid the situation that the object is at its highest point and reaches 0 velocity. The third condition is to check if there is a contact force to overcome the gravity. The last condition is to check if the friction force is enough to stop the object.
+
+> Sometimes we need to judge if the object isn't bouncing but is sliding or rolling, which is to say, motionless on the normal direction but not on the tangent direction. We can just consider $||v_n||$ instead of $||v||$ and ignore friction force condition.
+{: .prompt-tip }
+
+> In real scene simulation, the detection of motionless and whether they're balanced is NP-hard. Several approximation methods will be discussed in Chapter 9.
+{: .prompt-warning }
+
+
+# Collision between Polygon and Point
+
+
+
+
+
 

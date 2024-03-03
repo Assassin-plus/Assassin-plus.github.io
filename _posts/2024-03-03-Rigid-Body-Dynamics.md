@@ -99,7 +99,7 @@ $$
 
 torque: $\mathbf{\tau} = \mathbf{I}\mathbf{\omega} = (\mathbf{R}\mathbf{r}_i) \times \mathbf{f}_i $
 
-inertia: $\mathbf{I}_ref = m_i(\mathbf{r}_i^T \mathbf{r}_i\mathbf{1} -  \mathbf{r}_i\mathbf{r}_i^T),\ \mathbf{I} = \mathbf{RI_{ref}R^T}$
+inertia: $\mathbf{I}_ {ref}  = m_i(\mathbf{r}_i^T \mathbf{r}_i\mathbf{1} -  \mathbf{r}_i\mathbf{r}_i^T), \mathbf{I} = \mathbf{RI_ {ref} R^T}$
 
 # list of variables
 

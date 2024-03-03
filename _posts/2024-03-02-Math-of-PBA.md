@@ -1,3 +1,14 @@
+---
+title: "Math Background | Intro to Physics-Based Animation"
+date: 2024-03-02 00:00:00 +0200
+categories: [Simulation, GAMES103]
+math: true
+mermaid: true
+toc: true
+tip: true
+tags: [graphics]     # TAG names should always be lowercase
+---
+
 <head>
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
@@ -10,17 +21,7 @@
     </script>
 </head>
 
----
-title: "Math Background | Intro to Physics-Based Animation"
-date: 2024-03-02 00:00:00 +0200
-categories: [Simulation, GAMES103]
-math: true
-mermaid: true
-toc: true
-tip: true
-tags: [graphics]     # TAG names should always be lowercase
----
- 
+
 # Symmetric Positive Difiniteness (SPD)
 **A** is s.p.d. if and only if all of its eigenvalues are positive.
 

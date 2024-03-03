@@ -30,6 +30,8 @@ url: "https://Assassin-plus.github.io"
 
 toc: true
 
+markdown: kramdown
+
 github:
   username: Assassin-plus # change to your github username
 

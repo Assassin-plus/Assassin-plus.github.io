@@ -1,3 +1,15 @@
+<head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
+
 ---
 title: "Math Background | Intro to Physics-Based Animation"
 date: 2024-03-02 00:00:00 +0200
@@ -111,7 +123,7 @@ Tangent stiffness:$\mathbf{H(x)} = -\frac{\partial \mathbf{f}}{\partial \mathbf{
 
 Energy: $E(\mathbf{x}) = \frac{1}{2}k(\vert \vert\mathbf{x_{01}}\vert \vert-L)^2$
 
-Force: $\mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = \begin{bmatrix}-\nabla_0E(\mathbf{x})  -\nabla_1E(\mathbf{x})\end{bmatrix} = \begin{bmatrix}\mathbf{f}_e  -\mathbf{f}_e\end{bmatrix},\mathbf{f}_e = -k(\vert \vert\mathbf{x_{01}}\vert \vert-L)\frac{\mathbf{x_{01}}}{\vert \vert\mathbf{x_{01}}\vert \vert}
+Force: $\mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = \begin{bmatrix}-\nabla_0E(\mathbf{x}) \\  -\nabla_1E(\mathbf{x})\end{bmatrix} = \begin{bmatrix}\mathbf{f}_e \\ -\mathbf{f}_e\end{bmatrix},\mathbf{f}_e = -k(\vert \vert\mathbf{x_{01}}\vert \vert-L)\frac{\mathbf{x_{01}}}{\vert \vert\mathbf{x_{01}}\vert \vert}
 $
 
 Tangent stiffness:

@@ -120,23 +120,23 @@ Force: $ \mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = -k(\mathbf{x} - \mathb
 
 Tangent stiffness:$\mathbf{H(x)} = -\frac{\partial \mathbf{f}}{\partial \mathbf{x}} = k(\mathbf{I} - \frac{\mathbf{x}\mathbf{x}^T}{\vert \vert\mathbf{x}\vert \vert^2})(1-\frac{L}{\vert \vert\mathbf{x}\vert \vert}) + k\frac{\mathbf{x}\mathbf{x}^T}{\vert \vert\mathbf{x}\vert \vert}$
 
-<!--
+
 
 ## Example: A Spring with Two Ends
 
 Energy: $E(\mathbf{x}) = \frac{1}{2}k(\vert \vert\mathbf{x_{01}}\vert \vert-L)^2$
 
-Force: $\mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = \begin{bmatrix}-\nabla_0E(\mathbf{x}) \\  -\nabla_1E(\mathbf{x})\end{bmatrix} = \begin{bmatrix}\mathbf{f}_e \\ -\mathbf{f}_e\end{bmatrix},\mathbf{f}_e = -k(\vert \vert\mathbf{x_{01}}\vert \vert-L)\frac{\mathbf{x_{01}}}{\vert \vert\mathbf{x_{01}}\vert \vert}
-$
+Force: $$\mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = \begin{bmatrix}-\nabla_0E(\mathbf{x}) \\  -\nabla_1E(\mathbf{x})\end{bmatrix} = \begin{bmatrix}\mathbf{f}_e \\ -\mathbf{f}_e\end{bmatrix},\mathbf{f}_e = -k(\vert \vert\mathbf{x_{01}}\vert \vert-L)\frac{\mathbf{x_{01}}}{\vert \vert\mathbf{x_{01}}\vert \vert}
+$$
 
 Tangent stiffness:
-$
+$$
 \mathbf{H(x)} = \begin{bmatrix} 
 \frac{\partial^2E}{\partial \mathbf{x_0}^2} & \frac{\partial^2E}{\partial \mathbf{x_0}\partial \mathbf{x_1}} \\
 \frac{\partial^2E}{\partial \mathbf{x_1}\partial \mathbf{x_0}} & \frac{\partial^2E}{\partial \mathbf{x_1}^2}
 \end{bmatrix} = \begin{bmatrix}\mathbf{H}_e & -\mathbf{H}_e \\ -\mathbf{H}_e & \mathbf{H}_e\end{bmatrix}
 ,
 \mathbf{H}_e = k(\mathbf{I} - \frac{\mathbf{x_{01}}\mathbf{x_{01}}^T}{\vert \vert\mathbf{x_{01}}\vert \vert^2})(1-\frac{L}{\vert \vert\mathbf{x_{01}}\vert \vert}) + k\frac{\mathbf{x_{01}}\mathbf{x_{01}}^T}{\vert \vert\mathbf{x_{01}}\vert \vert^2}
-$
+$$
 
--->
+

@@ -61,7 +61,7 @@ $$
 $$
 
 
-if $\mathbf{f}(\mathbf{x}) = \begin{bmatrix} f(\mathbf{x}) \\ g(\mathbf{x}) \\ h(\mathbf{x}) \end{bmatrix}\in \R^3$, then
+if $\mathbf{f}(\mathbf{x}) = \begin{bmatrix} f(\mathbf{x}) \\ g(\mathbf{x}) \\ h(\mathbf{x}) \end{bmatrix}\in \mathbb{R}^3$, then
 
 $$Jacoobian:\  
 \mathbf{J}(\mathbf{f}) = \begin{bmatrix}
@@ -84,7 +84,7 @@ Curl:\
 \end{bmatrix}
 $$
 
-if $f(\mathbf{x}) \in \R$, then:
+if $f(\mathbf{x}) \in \mathbb{R}$, then:
 
 $$
 Hessian:\ 
@@ -103,16 +103,16 @@ $$
 ## Example: A Spring
 Energy: $E(\mathbf{x}) = \frac{1}{2}k(\mathbf{x} - \mathbf{x}_0)^T(\mathbf{x} - \mathbf{x}_0)$
 
-Force: $\mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = -k(\mathbf{x} - \mathbf{x}_0)\frac{\mathbf{x}}{||\mathbf{x}||}$
+Force: $ \mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = -k(\mathbf{x} - \mathbf{x}_0)\frac{\mathbf{x}}{\vert \vert\mathbf{x}\vert \vert} $
 
-Tangent stiffness:$\mathbf{H(x)} = -\frac{\partial \mathbf{f}}{\partial \mathbf{x}} = k(\mathbf{I} - \frac{\mathbf{x}\mathbf{x}^T}{||\mathbf{x}||^2})(1-\frac{L}{||\mathbf{x}||}) + k\frac{\mathbf{x}\mathbf{x}^T}{||\mathbf{x}||}$
+Tangent stiffness:$\mathbf{H(x)} = -\frac{\partial \mathbf{f}}{\partial \mathbf{x}} = k(\mathbf{I} - \frac{\mathbf{x}\mathbf{x}^T}{\vert \vert\mathbf{x}\vert \vert^2})(1-\frac{L}{\vert \vert\mathbf{x}\vert \vert}) + k\frac{\mathbf{x}\mathbf{x}^T}{\vert \vert\mathbf{x}\vert \vert}$
 
 ## Example: A Spring with Two Ends
 
-Energy: $E(\mathbf{x}) = \frac{1}{2}k(||\mathbf{x_{01}}||-L)^2$
+Energy: $E(\mathbf{x}) = \frac{1}{2}k(\vert \vert\mathbf{x_{01}}\vert \vert-L)^2$
 Force: $\mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = \begin{bmatrix}-\nabla_0E(\mathbf{x}) \\ -\nabla_1E(\mathbf{x})\end{bmatrix} = \begin{bmatrix}\mathbf{f}_e \\ -\mathbf{f}_e\end{bmatrix}
 ,
-\mathbf{f}_e = -k(||\mathbf{x_{01}}||-L)\frac{\mathbf{x_{01}}}{||\mathbf{x_{01}}||}
+\mathbf{f}_e = -k(\vert \vert\mathbf{x_{01}}\vert \vert-L)\frac{\mathbf{x_{01}}}{\vert \vert\mathbf{x_{01}}\vert \vert}
 $
 
 Tangent stiffness:
@@ -122,5 +122,5 @@ $
 \frac{\partial^2E}{\partial \mathbf{x_1}\partial \mathbf{x_0}} & \frac{\partial^2E}{\partial \mathbf{x_1}^2}
 \end{bmatrix} = \begin{bmatrix}\mathbf{H}_e & -\mathbf{H}_e \\ -\mathbf{H}_e & \mathbf{H}_e\end{bmatrix}
 ,
-\mathbf{H}_e = k(\mathbf{I} - \frac{\mathbf{x_{01}}\mathbf{x_{01}}^T}{||\mathbf{x_{01}}||^2})(1-\frac{L}{||\mathbf{x_{01}}||}) + k\frac{\mathbf{x_{01}}\mathbf{x_{01}}^T}{||\mathbf{x_{01}}||^2}
+\mathbf{H}_e = k(\mathbf{I} - \frac{\mathbf{x_{01}}\mathbf{x_{01}}^T}{\vert \vert\mathbf{x_{01}}\vert \vert^2})(1-\frac{L}{\vert \vert\mathbf{x_{01}}\vert \vert}) + k\frac{\mathbf{x_{01}}\mathbf{x_{01}}^T}{\vert \vert\mathbf{x_{01}}\vert \vert^2}
 $

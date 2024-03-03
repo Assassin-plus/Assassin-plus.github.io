@@ -68,3 +68,48 @@ $$ \mathbf{v}^{[1]} = \alpha \mathbf{v}^{[0]} $$
 > * Non-intuitive: hard to understand the physical meaning of each element.
 > * Time-derivative: hard to compute the time-derivative (rotational velocity) of the matrix.
 {: .prompt-tip }
+
+## Represented by Euler Angles
+
+> pros: intuitive, easy to understand. Each axial rotation uses an angle.
+> cons: not friendly for dynamics.
+> * gimbal lock: lose DoFs.
+> * Time-derivative: hard to compute the time-derivative (rotational velocity) of the matrix.
+{: .prompt-tip }
+
+## Represented by Quaternion
+
+To represent a rotation around $\mathbf{v}$ by an angle $\theta$, we use the quaternion:
+
+$$ \mathbf{q} = [\cos(\theta/2) + \mathbf{v}] $$
+
+$$ ||\mathbf{q}|| = 1 \ or \ ||\mathbf{v}||^2 = \sin ^2\frac{\theta}{2}$$
+
+# Rotational Motion
+
+$$
+\mathbf{\omega}^{[1]} = \mathbf{\omega}^{[0]} + \Delta t (\mathbf{I^{[0]}}^{-1})\mathbf{\tau}^{[0]}
+$$
+
+$$
+\mathbf{q}^{[1]} = \mathbf{q}^{[0]} + [0 , \frac{\Delta t}{2}\mathbf{\omega}^{[0]}]  \times \mathbf{q}^{[0]}
+$$
+
+## Torque and Inertia
+
+torque: $\mathbf{\tau} = \mathbf{I}\mathbf{\omega} = (\mathbf{R}\mathbf{r}_i) \times \mathbf{f}_i $
+
+inertia: $\mathbf{I}_{ref} = \sum_i m_i(\mathbf{r}_i^T \mathbf{r}_i\mathbf{1} -  \mathbf{r}_i\mathbf{r}_i^T),\ \mathbf{I} = \mathbf{RI_{ref}R^T}$
+
+# list of variables
+
+* $\mathbf{v}$: velocity
+* $\mathbf{x}$: position (transform.position in Unity)
+* $\mathbf{\omega}$: angular velocity
+* $\mathbf{q}$: quaternion (transform.rotation in Unity)
+* $\mathbf{M}$: mass
+* $\mathbf{I}$: inertia tensor
+* $\mathbf{f}$: force
+* $\mathbf{\tau}$: torque
+
+

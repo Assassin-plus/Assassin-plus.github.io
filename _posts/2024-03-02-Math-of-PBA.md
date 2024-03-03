@@ -119,7 +119,9 @@ Energy: $E(\mathbf{x}) = \frac{1}{2}k(\mathbf{x} - \mathbf{x}_0)^T(\mathbf{x} - 
 Force: $ \mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = -k(\mathbf{x} - \mathbf{x}_0)\frac{\mathbf{x}}{\vert \vert\mathbf{x}\vert \vert} $
 
 Tangent stiffness:$\mathbf{H(x)} = -\frac{\partial \mathbf{f}}{\partial \mathbf{x}} = k(\mathbf{I} - \frac{\mathbf{x}\mathbf{x}^T}{\vert \vert\mathbf{x}\vert \vert^2})(1-\frac{L}{\vert \vert\mathbf{x}\vert \vert}) + k\frac{\mathbf{x}\mathbf{x}^T}{\vert \vert\mathbf{x}\vert \vert}$
+
 <!--
+
 ## Example: A Spring with Two Ends
 
 Energy: $E(\mathbf{x}) = \frac{1}{2}k(\vert \vert\mathbf{x_{01}}\vert \vert-L)^2$
@@ -136,4 +138,5 @@ $
 ,
 \mathbf{H}_e = k(\mathbf{I} - \frac{\mathbf{x_{01}}\mathbf{x_{01}}^T}{\vert \vert\mathbf{x_{01}}\vert \vert^2})(1-\frac{L}{\vert \vert\mathbf{x_{01}}\vert \vert}) + k\frac{\mathbf{x_{01}}\mathbf{x_{01}}^T}{\vert \vert\mathbf{x_{01}}\vert \vert^2}
 $
+
 -->

@@ -110,9 +110,8 @@ Tangent stiffness:$\mathbf{H(x)} = -\frac{\partial \mathbf{f}}{\partial \mathbf{
 ## Example: A Spring with Two Ends
 
 Energy: $E(\mathbf{x}) = \frac{1}{2}k(\vert \vert\mathbf{x_{01}}\vert \vert-L)^2$
-Force: $\mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = \begin{bmatrix}-\nabla_0E(\mathbf{x}) \\ -\nabla_1E(\mathbf{x})\end{bmatrix} = \begin{bmatrix}\mathbf{f}_e \\ -\mathbf{f}_e\end{bmatrix}
-,
-\mathbf{f}_e = -k(\vert \vert\mathbf{x_{01}}\vert \vert-L)\frac{\mathbf{x_{01}}}{\vert \vert\mathbf{x_{01}}\vert \vert}
+
+Force: $\mathbf{f}(\mathbf{x}) = -\nabla E(\mathbf{x}) = \begin{bmatrix}-\nabla_0E(\mathbf{x})  -\nabla_1E(\mathbf{x})\end{bmatrix} = \begin{bmatrix}\mathbf{f}_e  -\mathbf{f}_e\end{bmatrix},\mathbf{f}_e = -k(\vert \vert\mathbf{x_{01}}\vert \vert-L)\frac{\mathbf{x_{01}}}{\vert \vert\mathbf{x_{01}}\vert \vert}
 $
 
 Tangent stiffness:

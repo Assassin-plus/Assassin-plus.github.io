@@ -1,12 +1,3 @@
-<!--
- * @Author: Assassin-plus 56057686+Assassin-plus@users.noreply.github.com
- * @Date: 2024-03-04 22:16:58
- * @LastEditors: Assassin-plus 56057686+Assassin-plus@users.noreply.github.com
- * @LastEditTime: 2024-03-05 21:37:46
- * @FilePath: \Assassin-plus.github.io\_posts\2024-03-04-Rigid-Contacts.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
-
 ---
 
 title: "Rigid Contacts| Intro to Physics-Based Animation"
@@ -17,8 +8,7 @@ mermaid: true
 toc: true
 tip: true
 tags: [graphics]     # TAG names should always be lowercase
------------------------------------------------------------
-
+---
 
 # Particle Collision Detection and Response
 
@@ -244,10 +234,4 @@ where the last step is the polar decomposition.
   - The rigidification process will destroy them.
 - More suitable when the friction accuracy is unimportant, i.e., buttons on clothes.
 
->>>>>>> 557cac3eddee54746b130bb5ade0e4800286386f
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
+

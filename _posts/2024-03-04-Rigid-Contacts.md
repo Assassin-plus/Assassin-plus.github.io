@@ -146,6 +146,7 @@ $$
 - We allow each vertex to have its own velocity, so it can move by itself.
     - First, move vertices independently by its velocity, with collision and friction being handled.
     - Second, *enforce the rigidity constraint* to become a rigid body again.
+
 ## Mathematical Formulation
 After the first step, we get new positions $\mathbf{y}_i$, and then we regulate it with:
 $$

@@ -75,6 +75,8 @@ Ignoring gamma correction also affects the quality of antialiased edges.
 
 If this is not done, the represented radiance for the pixels will be too dark, resulting in a perceived deformation of the edge as seen in the right side of the figure. This artifact is called roping, because the edge looks somewhat like a twisted rope.
 
+Ignoring gamma correction also affects the quality of **antialiased edges**.
+
 ---
 
 Monitors that are brighter and that can display a wider range of colors have been developed. Color display and brightness are discussed in Section 8.1.3, and display encoding for high dynamic range displays is presented in Section 8.2.1.

@@ -67,3 +67,17 @@ It is also worth noting that ***one-dimensional texture*** images and functions 
 Since multiple textures can be applied to a surface, *multiple sets* of texture coordinates may need to be defined. However the coordinate values are applied, the idea is the same: These texture coordinates are ***interpolated across the surface*** and used to retrieve texture values. Before being interpolated, however, these texture coordinates are transformed by *corresponder functions*.
 
 # The Corresponder Function
+
+Corresponder functions convert texture coordinates to texture-space locations. They provide flexibility in applying textures to surfaces.
+
+Another class of corresponder functions controls the way an image is applied. We know that an image will appear on the surface where (u, v) are in the [0, 1] range. But what happens outside of this range? Corresponder functions determine the behavior. In OpenGL, this type of corresponder function is called the “**wrapping mode**”; in DirectX, it is called the “**texture addressing mode**.” Common corresponder functions of this type are:
+
+- **wrap (DirectX), repeat (OpenGL)**, or tile—The image repeats itself across the surface; algorithmically, the integer part of the texture coordinates is dropped. This function is useful for having an image of a material repeatedly cover a surface, and is often the default.
+- **mirror**—The image repeats itself across the surface, but is mirrored (flipped) on every other repetition. For example, the image appears normally going from 0 to 1, then is reversed between 1 and 2, then is normal between 2 and 3, then is reversed, and so on. This provides some continuity along the edges of the texture.
+- **clamp (DirectX) or clamp to edge (OpenGL)**—Values outside the range [0, 1] are clamped to this range. This results in the repetition of the edges of the image texture. This function is useful for avoiding accidentally taking samples from the opposite edge of a texture when bilinear interpolation happens near a texture’s edge.**
+- **border (DirectX) or clamp to border (OpenGL)—Texture coordinates out- side [0, 1] are rendered with a separately defined border color. This function can be good for rendering decals onto single-color surfaces, for example, as the edge
+of the texture will blend smoothly with the border color.
+
+Repeated tiling of a texture is an inexpensive way of adding more visual detail to a scene. However, this technique often looks *unconvincing* after about three repetitions of the texture, as the eye picks out the pattern. A common solution to avoid such periodicity problems is to *combine the texture values with another, non-tiled, tex- ture.*
+
+Another option to avoid periodicity is to use shader programs to implement specialized corresponder functions that **randomly recombine texture** patterns or tiles. 

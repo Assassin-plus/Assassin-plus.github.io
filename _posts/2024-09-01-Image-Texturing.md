@@ -70,8 +70,8 @@ One *user control* on the d-coordinate is the level of detail bias (LOD bias). T
 ### Summed-Area Tables
 
 To use this method, one first creates an array that is the size of the texture but contains more bits of precision for the color stored. At each location in this array, one must compute and store the sum of all the corresponding texture’s texels in the rectangle formed by this location and texel (0, 0) (the origin). During texturing, the pixel cell’s projection onto the texture is bound by a rectangle. The summed-area table is then accessed to determine the average color of this rectangle, which is passed back as the texture’s color for the pixel.
-![alt text](/images/截屏2024-09-01 18.47.09.png)
-![alt text](/images/截屏2024-09-01 18.47.42.png)
+![alt text](../images/2024-09-01_18.47.09.png)
+![alt text](/images/2024-09-01_18.47.42.png)
 
 The summed-area table is an example of what are called anisotropic filtering algorithms. Such algorithms retrieve texel values over areas that are not square. However, SAT is able to do this most effectively in primarily horizontal and vertical directions. Note also that summed-area tables take at least two times as much memory for textures of size 16 × 16 or less, with more precision needed for larger textures. Summed area tables, which give higher quality at a reasonable overall memory cost, can be implemented on modern GPUs.
 
@@ -138,7 +138,7 @@ There are seven variants of the DXTC/BC compression scheme, and they share some 
 - An interpolation factor is saved for each of the 16 texels in the block.
   The compression comes from storing only two colors along with a short index value per pixel.
 
-![alt text](/images/截屏2024-09-01 19.43.43.png)
+![alt text](/images/2024-09-01_19.43.43.png)
 
 > Note that “DXT” indicates the names in DirectX 9 and “BC” the names in DirectX 10 and beyond. As can be read in the table, BC1 has two 16-bit reference RGB values (5 bits red, 6 green, 5 blue), and each texel has a 2-bit interpolation factor to select from one of the reference values or two intermediate values.1 This represents a 6 : 1 texture compression ratio, compared to an uncompressed 24-bit RGB texture.
 > BC2 encodes colors in the same way as BC1, but adds 4 bits per texel (bpt) for quantized (raw) alpha.
@@ -185,7 +185,7 @@ Decompression is extremely fast since it is done using fixed-function hardware. 
 - Using 16 bits per component makes sure that there are no unused slots in the histogram after renormalization, which reduces banding artifacts that many texture compression schemes may introduce.
 - In addition, Kaplanyan recommends using a linear color space for the texture if 75% of the pixels are above 116/255, and otherwise storing the texture in sRGB.
 - For normal maps, he also notes that BC5/3Dc often compresses x independently from y, which means that the best normal is not always found. Instead, he proposes to use the following error metric for normals:
-  ![alt text](/images/截屏2024-09-01 20.06.17.png)
+  ![alt text](/images/2024-09-01_20.06.17.png)
   where n is the original normal and nc is the same normal compressed, and then decompressed.
 
 It should be noted that it is also possible to compress textures in a different color space, which can be used to speed up texture compression. A commonly used trans- form is RGB→YCoCg, where Y is a luminance term and Co and Cg are chrominance terms. The inverse

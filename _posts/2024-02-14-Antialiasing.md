@@ -38,7 +38,7 @@ Assume the sampled signal is reconstructed as shown in the previous section. Int
 Minification:
 The frequency of the original signal is too high for the sampling rate to avoid aliasing. Instead it has been shown that a filter using **sinc(x/a)** should be used to create a continuous signal from the sampled one. After that, resampling at the desired intervals can take place.
 
-![picture 0](../images/2024-02-1_23.26.43.png)
+![picture 0](/images/2024-02-1_23.26.43.png)
 
 ## Screen-Space Antialiasing
 

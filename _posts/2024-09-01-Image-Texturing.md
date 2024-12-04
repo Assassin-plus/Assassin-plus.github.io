@@ -31,7 +31,7 @@ However, the desired result is to prevent aliasing in the **final rendered image
 It should be noted that bicubic filters are more expensive than bilinear filters. However, many higher-order filters can be expressed as repeated linear interpolations. As a result, the GPU hardware for linear interpolation in the texture unit can be exploited with several lookups.
 
 If bicubic filters are considered too expensive, Qu ́ılez proposes a simple technique using a smooth curve to interpolate in between a set of 2 × 2 texels. We first describe the curves and then the technique. Two commonly used curves are the smoothstep curve and the quintic curve.
-![curve function](../images/2024-09-01%2018:14.png)
+![curve function](../images/截屏2024-09-01%18.14.27.png)
 
 - The technique starts by computing (u′,v′) (same as used in Equation 6.1 and in Figure 6.9) by first multiplying the sample by the texture dimensions and adding 0.5. The integer parts are kept for later, and the fractions are stored in u′ and v′, which are in the range of [0, 1]. The (u′, v′) are then transformed as (tu, tv) = (q(u′), q(v′)), still in the range of [0, 1]. Finally, 0.5 is subtracted and the integer parts are added back in; the resulting u-coordinate is then divided by the texture width, and similarly for v. At this point, the new texture coordinates are used with the bilinear interpolation lookup provided by the GPU. Note that this method will give plateaus at each texel, which means that if the texels are located on a plane in RGB space, for example, then this type of interpolation will give a smooth, but still staircased, look, which may not always be desired.
 

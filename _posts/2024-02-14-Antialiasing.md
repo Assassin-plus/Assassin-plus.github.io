@@ -148,7 +148,7 @@ A few other GPU-supported algorithms are worth noting.
 
 When used in a single frame, Quincunx has a low cost of only two samples by sharing samples at the pixel boundaries. The RGSS pattern is better at capturing more gradations of nearly horizontal and vertical edges. First developed for mobile graphics, the **FLIPQUAD** pattern combines both of these desirable features. Its advantages are that the cost is only two samples per pixel, and the quality is similar to RGSS (which costs four samples per pixel).
 
-![picture 1](../images/2024-02-15_14.40.28.png)
+![picture 1](/images/2024-02-15_14.40.28.png){: .normal }
 
 > \#TODO *(Further Reading)* Like Quincunx, the two-sample FLIPQUAD pattern can also be used with temporal antialiasing and spread over two frames. Drobot tackles the question of which two-sample pattern is best in his hybrid reconstruction antialiasing (HRAA) work. He explores different sampling patterns for temporal antialiasing, finding the FLIPQUAD pattern to be the best of the five tested. A checkerboard pattern has also seen use with temporal antialiasing. El Mansouri  discusses using twosample MSAA to create a checkerboard render to reduce shader costs while addressing aliasing issues. Jimenez uses SMAA, temporal antialiasing, and a variety of other techniques to provide a solution where antialiasing quality can be changed in response to rendering engine load. Carpentier and Ishiyama sample on edges, rotating the sampling grid by 45◦. They combine this temporal antialiasing scheme with FXAA (discussed later) to efficiently render on higher-resolution displays.
 

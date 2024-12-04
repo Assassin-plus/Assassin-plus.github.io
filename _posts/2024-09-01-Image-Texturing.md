@@ -70,7 +70,7 @@ One *user control* on the d-coordinate is the level of detail bias (LOD bias). T
 ### Summed-Area Tables
 
 To use this method, one first creates an array that is the size of the texture but contains more bits of precision for the color stored. At each location in this array, one must compute and store the sum of all the corresponding texture’s texels in the rectangle formed by this location and texel (0, 0) (the origin). During texturing, the pixel cell’s projection onto the texture is bound by a rectangle. The summed-area table is then accessed to determine the average color of this rectangle, which is passed back as the texture’s color for the pixel.
-![alt text](../images/2024-09-01_18.47.09.png)
+![alt text](/images/2024-09-01_18.47.09.png)
 ![alt text](/images/2024-09-01_18.47.42.png)
 
 The summed-area table is an example of what are called anisotropic filtering algorithms. Such algorithms retrieve texel values over areas that are not square. However, SAT is able to do this most effectively in primarily horizontal and vertical directions. Note also that summed-area tables take at least two times as much memory for textures of size 16 × 16 or less, with more precision needed for larger textures. Summed area tables, which give higher quality at a reasonable overall memory cost, can be implemented on modern GPUs.

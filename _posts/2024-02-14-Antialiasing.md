@@ -38,7 +38,7 @@ Assume the sampled signal is reconstructed as shown in the previous section. Int
 Minification:
 The frequency of the original signal is too high for the sampling rate to avoid aliasing. Instead it has been shown that a filter using **sinc(x/a)** should be used to create a continuous signal from the sampled one. After that, resampling at the desired intervals can take place.
 
-![picture 0](/images/2024-02-1_23.26.43.png)
+![picture 0](/images/2024-02-13_23.26.43.png)
 
 ## Screen-Space Antialiasing
 
@@ -72,7 +72,7 @@ The general strategy of screen-based antialiasing schemes is to use a sampling p
   ![picture 1](/images/2024-02-14_23.35.47.png)
 
   Pixels may have, say, four (x,y) sample locations per fragment, each with their own color and z-depth, but the pixel shader is evaluated **only once for each object fragment** applied to the pixel.
-  If all MSAA positional samples are covered by the fragment, the shading sample is evaluated at the center of the pixel. If instead the fragment covers fewer positional samples, the shading sample’s position can be **shifted** to better represent the positions covered. Doing so avoids shade sampling off the edge of a texture, for example. This position adjustment is called **centroid sampling** or centroid interpolation and is done `<u>`automatically by the GPU`</u>`, if enabled.
+  If all MSAA positional samples are covered by the fragment, the shading sample is evaluated at the center of the pixel. If instead the fragment covers fewer positional samples, the shading sample’s position can be **shifted** to better represent the positions covered. Doing so avoids shade sampling off the edge of a texture, for example. This position adjustment is called **centroid sampling** or centroid interpolation and is done `<u>`automatically by the GPU `</u>`, if enabled.
   Centroid sampling avoids off-triangle problems but can cause **derivative computations** to return incorrect values.
 
 MSAA is faster than a pure supersampling scheme because the fragment is shaded only once. It focuses effort on sampling the fragment’s pixel **coverage** at a higher rate and **sharing** the computed shade. It is possible to save more memory by further de- coupling sampling and coverage, which in turn can make antialiasing faster still—the less memory touched, the quicker the render.
@@ -102,6 +102,7 @@ With each frame’s samples in a different subpixel location, the weighted sum o
 **No** additional samples are needed for each frame, which is what makes this type of approach so appealing. It is even possible to use temporal sampling to allow generation of a **lower-resolution** image that is upscaled to the display’s resolution. In addition, illumination methods or other techniques that require many samples for a good result can instead use **fewer samples** each frame, since the results will be blended over several frames.
 
 - Rapidly moving objects or quick camera moves can cause **ghosting**.
+
   - One solution to ghosting is to perform such antialiasing on only slow-moving objects.
   - Another important approach is to use reprojection (Section 12.2) to better correlate the previous and current frames’ objects.
 

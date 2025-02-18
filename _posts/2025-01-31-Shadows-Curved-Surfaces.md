@@ -21,7 +21,11 @@ More elaborate algorithms can give better results.
 
 > For example, Eisemann and Dè´±coret assume a rectangular overhead light and create a stack of shadow images of horizontal slices of the object, which are then turned into mipmaps or similar. The corresponding area of each slice is accessed proportional to its distance from the receiver by using its mipmap, meaning that more distant slices will cast softer shadows.
 
+There are some serious drawbacks of texture projection methods. First, the application must identify which objects are occluders and which are their receivers. The receiver must be maintained by the program to be further from the light than the occluder, otherwise the shadow is *°»cast backward.°…* Also, occluding objects cannot shadow themselves. The next two sections present algorithms that generate correct shadows without the need for such intervention or limitations.
 
+Note that a variety of lighting patterns can be obtained by using prebuilt projective textures. A spotlight is simply a square projected texture with a circle inside of it defining the light. A Venetian blinds effect can be created by a projected texture consisting of horizontal lines. This type of texture is called a *light attenuation mask*, *cookie texture*, or *gobo map*. A prebuilt pattern can be combined with a projected texture created on the fly by simply multiplying the two textures together.
+
+<!--
 ## Lists
 
 ### Ordered list
@@ -93,3 +97,4 @@ The image below will toggle dark/light mode based on theme preference, notice it
 
 [^footnote]: The footnote source
 [^fn-nth-2]: The 2nd footnote source
+-->

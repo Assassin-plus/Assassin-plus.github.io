@@ -32,7 +32,7 @@ proportion of the light's area is visible from the location. PCF attempts to app
 imate a soft shadow for a punctual (or directional) light by reversing the process.
 Instead of finding the light's visible area from a surface location, it finds the visibility
 of the punctual light from a set of surface locations near the original location. See
-Figure 7.22. The name ¡Èpercentage-closer filtering¡É refers to the ultimate goal, to find
+Figure 7.22. The name "percentage-closer filtering" refers to the ultimate goal, to find
 the percentage of the samples taken that are visible to the light. This percentage is
 how much light then is used to shade the surface.
 

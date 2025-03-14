@@ -25,7 +25,6 @@ When a single z-buffer is generated, the light can "look" in only a particular d
 
 If the local light source is inside a scene and is surrounded by shadow-casters, a typical solution is to use a six-view cube, similar to cubic environment mapping. These are called *omnidirectional shadow maps*. The main challenge for omnidirectional maps is avoiding artifacts along the seams where two separate maps meet. Forsyth presents a general multi-frustum partitioning scheme for omnidirectional lights that also provides more shadow map resolution where needed. Crytek sets the resolution of each of the six views for a point light based on the screen-space coverage of each view's projected frustum, with all maps stored in a texture atlas.
 
-
 Not all objects in the scene need to be rendered into the light's view volume. First, only objects that can cast shadows need to be rendered. For example, if it is known that the ground can only receive shadows and not cast one, then it does not have to be rendered into the shadow map.
 
 Shadow casters are by definition those inside the light's view frustum. This frustum can be augmented or tightened in several ways, allowing us to safely disregard some shadow casters. Think of the set of shadow receivers visible to the eye. This set of objects is within some maximum distance along the light's view direction. Anything beyond this distance cannot cast a shadow on the visible receivers. Similarly, the set of visible receivers may well be smaller than the light's original x and y view bounds. Another example is that if the light source is inside the eye's view frustum, no object outside this additional frustum can cast a shadow on a receiver. Another example is that if the light source is inside the eye's view frustum, no object outside this additional frustum can cast a shadow on a receiver. Rendering only relevant objects not only can save time rendering, but can also reduce the size required for the light's frustum and so increase the effective resolution of the shadow map, thus improving quality. In addition, it helps if the light frustum's near plane is as far away from the light as possible, and if the far plane is as close as possible. Doing so increases the effective precision of the z-buffer.
@@ -55,7 +54,6 @@ As the viewer moves, the light's view volume often changes size as the set of sh
 
 Similar to how textures are used, ideally we want one shadow-map texel to cover about one image pixel. If we have a light source located at the same position as the eye, the shadow map perfectly maps one-to-one with the screen-space pixels (and there are no visible shadows, since the light illuminates exactly what the eye sees). As soon as the light's direction changes, this per-pixel ratio changes, which can cause artifacts. The shadow is blocky and poorly defined because a large number of pixels in the foreground are associated with each texel of the shadow map. This mismatch is called *perspective aliasing*. Single shadow-map texels can also cover many pixels if a surface is nearly edge-on to the light, but faces the viewer. This problem is known as *projective aliasing*. Blockiness can be decreased by increasing the shadow-map resolution, but at the cost of additional memory and processing.
 
-
 There is another approach to creating the light's sampling pattern that makes it more closely resemble the camera's pattern. This is done by changing the way the scene projects toward the light. Normally we think of a view as being symmetric, with the view vector in the center of the frustum. However, the view direction merely defines a view plane, but not which pixels are sampled. The window defining the frustum can be shifted, skewed, or rotated on this plane, creating a quadrilateral that gives a different mapping of world to view space. The quadrilateral is still sampled at regular intervals, as this is the nature of a linear transform matrix and its use by the GPU. The sampling rate can be modified by varying the light's view direction and the view window's bounds.
 
 There are 22 degrees of freedom in mapping the light's view to the eye's. Exploration of this solution space led to several different algorithms that attempt to better match the light's sampling rates to the eye's. Methods include *perspective shadow maps* (PSM), *trapezoidal shadow maps* (TSM), and *light space perspective shadow maps* (LiSPSM). Techniques in this class are referred to as *perspective warping* methods.
@@ -80,7 +78,6 @@ This type of algorithm is straightforward to implement, can cover huge scene are
 While it is possible to use perspective warping to pack more samples into subdivided areas of a single shadow map, the norm is to use a separate shadow map for each cascade. From the viewer¡Çs perspective, the area covered by each map can vary. Smaller view volumes for the closer shadow maps provide more samples where they are needed. Determining how the range of z-depths is split among the maps?a task called *z-partitioning*?can be quite simple or involved. One method is logarithmic partitioning, where the ratio of far to near plane distances is made the same for each cascade map:
 $$r=\sqrt[c]{\frac{f}{n}}$$
 where $n$ and $f$ are the near and far planes of the whole scene, $c$ is the number of maps, and $r$ is the resulting ratio.
-
 
 > The initial near depth has a large effect on this partitioning. If the near depth was very low, this would mean that each shadow map generated must cover a larger area, lowering its precision. In practice such a partitioning gives considerable resolution to the area close to the near plane, which is wasted if there are no objects in this area. One way to avoid this mismatch is to set the partition distances as a weighted blend of logarithmic and equidistant distributions, but it would be better still if we could determine tight view bounds for the scene.
 
@@ -175,7 +172,6 @@ The image below will toggle dark/light mode based on theme preference, notice it
 
 ![light mode only](/posts/20190808/devtools-light.png){: .light .w-75 .shadow .rounded-10 w='1212' h='668' }
 ![dark mode only](/posts/20190808/devtools-dark.png){: .dark .w-75 .shadow .rounded-10 w='1212' h='668' }
-
 
 ## Reverse Footnote
 

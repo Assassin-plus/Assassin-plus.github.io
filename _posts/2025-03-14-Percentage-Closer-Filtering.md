@@ -16,21 +16,21 @@ look blocky when a single light-sample cell covers many screen pixels. The solut
 similar to texture magnification (Section 6.2.1). Instead of a single sample being taken
 off the shadow map, the four nearest samples are retrieved. The technique does not
 interpolate between the depths themselves, but rather the results of their comparisons
-with the surface¡Çs depth. That is, the surface¡Çs depth is compared separately to the
+with the surface's depth. That is, the surface's depth is compared separately to the
 four texel depths, and the point is then determined to be in light or shadow for
 each shadow-map sample. These results, i.e., 0 for shadow and 1 for light, are then
 bilinearly interpolated to calculate how much the light actually contributes to the
 surface location. This filtering results in an artificially soft shadow. These penumbrae
-change, depending on the shadow map¡Çs resolution, camera location, and other factors.
+change, depending on the shadow map's resolution, camera location, and other factors.
 For example, a higher resolution makes for a narrower softening of the edges. Still, a
 little penumbra and smoothing is better than none at all.
 
 This idea of retrieving multiple samples from a shadow map and blending the
 results is called *percentage-closer filtering* (PCF) [1475].Area lights produce soft
 shadows. The amount of light reaching a location on a surface is a function of what
-proportion of the light¡Çs area is visible from the location. PCF attempts to approx-
+proportion of the light's area is visible from the location. PCF attempts to approx-
 imate a soft shadow for a punctual (or directional) light by reversing the process.
-Instead of finding the light¡Çs visible area from a surface location, it finds the visibility
+Instead of finding the light's visible area from a surface location, it finds the visibility
 of the punctual light from a set of surface locations near the original location. See
 Figure 7.22. The name ¡Èpercentage-closer filtering¡É refers to the ultimate goal, to find
 the percentage of the samples taken that are visible to the light. This percentage is

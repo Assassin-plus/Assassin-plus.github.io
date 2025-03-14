@@ -1,6 +1,6 @@
 ---
 title: "Percentage-Closer Filtering | Real-time Rendering Chapter 7.5"
-date: 2025-02-25 00:02:00 +0200
+date: 2025-03-14 00:02:00 +0200
 categories: [RTR4,Shadows]
 math: true
 mermaid: true
@@ -37,7 +37,6 @@ the percentage of the samples taken that are visible to the light. This percenta
 how much light then is used to shade the surface.
 
 ![fig7.22](/images/fig7.22.png)
-
 
 <!--
 regex:\[\d+(?:,\s*\d+)*\]

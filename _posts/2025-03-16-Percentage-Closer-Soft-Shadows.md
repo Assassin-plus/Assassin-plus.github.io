@@ -1,5 +1,5 @@
 ---
-title: "Percentage-Closer Soft Shadows | Real-time Rendering Chapter 7.5"
+title: "Percentage-Closer Soft Shadows | Real-time Rendering Chapter 7.6"
 date: 2025-03-16 00:02:00 +0200
 categories: [RTR4,Shadows]
 math: true

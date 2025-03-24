@@ -1,6 +1,6 @@
 ---
 title: "Filtered Shadow Maps | Real-time Rendering Chapter 7.7"
-date: 2025-03-16 00:02:00 +0200
+date: 2025-03-20 00:02:00 +0200
 categories: [RTR4,Shadows]
 math: true
 mermaid: true

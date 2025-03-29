@@ -1,6 +1,6 @@
 ---
 title: "Volumetric Shadow Techniques | Real-time Rendering Chapter 7.8"
-date: 2025-03-25 00:02:00 +0200
+date: 2025-03-29 00:02:00 +0200
 categories: [RTR4,Shadows]
 math: true
 mermaid: true
@@ -10,7 +10,17 @@ tags: [graphics]     # TAG names should always be lowercase
 ---
 # Volumetric Shadow Techniques
 
+Transparent objects will attenuate and change the color of light. For some sets of transparent objects, techniques similar to those discussed in Section 5.5 can be used to simulate such effects. For example, in some situations a second type of shadow map can be generated. The transparent objects are rendered to it, and the closest depth and color or alpha coverage is stored. If the receiver is not blocked by the opaque shadow map, the transparency depth map is then tested and, if occluded, the color or coverage is retrieved as needed . This idea is reminiscent of shadow and light projection in Section 7.2, with the stored depths avoiding projection onto receivers between the transparent objects and the light. Such techniques cannot be applied to the transparent objects themselves.
 
+Self-shadowing is critical for realistic rendering of objects such as hair and clouds, where objects are either small or semitransparent. Single-depth shadow maps will not work for these situations. Lokovic and Veach  first presented the concept of *deep shadow maps*, in which each shadow-map texel stores a function of how light drops off with depth. This function is typically approximated by a series of samples at different depths, with each sample having an opacity value. The two samples in the map that bracket a given position's depth are used to find the shadow's effect. The challenge on the GPU is in generating and evaluating such functions efficiently. These algorithms use similar approaches and run into similar challenges found for some order-independent transparency algorithms (Section 5.5), such as compact storage of the data needed to faithfully represent each function.
+
+Kim and Neumann  were the first to present a GPU-based method, which they call *opacity shadow maps*. Maps storing just the opacities are generated at a fixed set of depths. Nguyen and Donnelly  give an updated version of this approach. However, the depth slices are all parallel and uniform, so many slices are needed to hide in-between slice opacity artifacts due to linear interpolation. Yuksel and Keyser  improve efficiency and quality by creating opacity maps that more closely follow the shape of the model. Doing so allows them to reduce the number of layers needed, as evaluation of each layer is more significant to the final image.
+
+To avoid having to rely on fixed slice setups, more adaptive techniques have been proposed. Salvi et al.  introduce *adaptive volumetric shadow maps*, in which each shadow-map texel stores both the opacities and layer depths.Pixel shaders operations are used to lossily compress the stream of data (surface opacities) as it is rasterized. This avoids needing an unbounded amount of memory to gather all samples and process them in a set. The technique is similar to deep shadow maps , but with the compression step done on the fly in the pixel shader. Limiting the function representation to a small, fixed number of stored opacity/depth pairs makes both compression and retrieval on the GPU more efficient . The cost is higher than simple blending because the curve needs to be read, updated, and written back, and it depends on the number of points used to represent a curve.In this case, this technique also requires recent hardware that supports UAV and ROV functionality (end of Section 3.8).
+
+The adaptive volumetric shadow mapping method was used for realistic smoke rendering in the game GRID2, with the average cost being below 2 ms/frame . Furst et al.  describe and provide code for their implementation of deep shadow maps for a video game. They use linked lists to store depths and alphas, and use exponential shadow mapping to provide a soft transition between lit and shadowed regions.
+
+Exploration of shadow algorithms continues, with a synthesis of a variety of algorithms and techniques becoming more common. For example, Selgrad et al.  research storing multiple transparent samples with linked lists and using compute shaders with scattered writes to build the map. Their work uses deep shadow-map concepts, along with filtered maps and other elements, which give a more general solution for providing high-quality soft shadows.
 <!--
 regex:\[\d+(?:,\s*\d+)*\]
 ## Lists

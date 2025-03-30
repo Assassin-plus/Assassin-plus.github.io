@@ -45,7 +45,8 @@ More recently, *moment shadow mapping* was introduced by Peters and Klein . It o
 
 Cascaded shadow-map techniques can be applied to filtered maps to improve precision . An advantage of cascaded ESM over standard cascaded maps is that a single bias factor can be set for all cascades . Chen and Tatarchuk  go into detail about various light leak problems and other artifacts encountered with cascaded ESM, and present a few solutions.
 
-Filtered maps can be thought of as an inexpensive form of PCF, one that needs few samples. Like PCF, such shadows have a constant width. These filtered approaches can all be used in conjunction with PCSS to provide variable-width penumbrae . An extension of moment shadow mapping also includes the ability to provide light scattering and transparency effects .
+Filtered maps can be thought of as an inexpensive form of PCF, one that needs few samples. Like PCF, such shadows have a constant width. These filtered approaches can all be used in conjunction with PCSS to provide variable-width penumbrae . An extension of moment shadow mapping also includes the ability to provide light scattering and transparency effects.
+
 <!--
 regex:\[\d+(?:,\s*\d+)*\]
 ## Lists

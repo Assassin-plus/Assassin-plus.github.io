@@ -12,6 +12,12 @@ tags: [graphics]     # TAG names should always be lowercase
 
 In 2005 Fernando  published an influential approach called *percentage-closer soft shadows* (PCSS). It attempts a solution by searching the nearby area on the shadow map to find all possible occluders. The average distance of these occluders from the location is used to determine the sample area width:
 
+$$w_{sample}=w_{light}\frac{d_r-d_o}{d_r}$$
+
+where $d_r$ is the distance of the receiver from the light and $d_o$ the average occluder distance. In other words, the width of the surface area to the sample grows as the average occluder gets farther from the receiver and closer to the light.
+
+If there are no occluders found, the location is fully lit and no further processing is necessary. Similarly, if the location is fully occluded, processing can end. Otherwise, then the area of interest is sampled and the light's approximate contribution is computed. To save on processing costs, the width of the sample area can be used to vary the number of samples taken. Other techniques can be implemented, e.g., using lower sampling rates for distant soft shadows that are less likely to be important.
+
 
 <!--
 regex:\[\d+(?:,\s*\d+)*\]

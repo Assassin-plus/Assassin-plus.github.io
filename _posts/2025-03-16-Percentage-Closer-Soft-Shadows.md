@@ -20,9 +20,6 @@ If there are no occluders found, the location is fully lit and no further proces
 
 A drawback of this method is that it needs to sample a fair-sized area of the shadow map to find the occluders. Using a rotated Poisson disk pattern can help hide undersampling artifacts . Jimenez  notes that Poisson sampling can be unstable under motion and finds that a spiral pattern formed by using a function halfway between dithering and random gives a better result frame to frame.
 
-Sikachev et al.  discuss in detail a faster implementation of PCSS using features in SM 5.0, introduced by AMD and often called by their name for it, *contact hardening shadows* (CHS). This new version also addresses another problem with basic PCSS: The penumbra's size is affected by the shadow map's resolution. This problem is minimized by first generating mipmaps of the shadow map, then choosing the mip level closest to a user-defined world-space kernel size. An 8 x 8 area is sampled to find the average blocker depth, needing only 16 $GatherRed()$ texture calls. Once a penumbra estimate is found, the higher-resolution mip levels are used for the sharp area of the shadow, while the lower-resolution mip levels are used
-for softer areas.
-
 CHS has been used in a large number of video games , and research continues. For example, Buades et al.  present *separable soft shadow mapping* (SSSM), where the PCSS process of sampling a grid is split into separable parts and elements are reused as possible from pixel to pixel.
 
 One concept that has proven helpful for accelerating algorithms that need multiple samples per pixel is the hierarchical *min/max shadow map*. While shadow map depths normally cannot be averaged, the minimum and maximum values at each mipmap level can be useful. That is, two mipmaps can be formed, one saving the largest zdepth found in each area (sometimes called HiZ ), and one the smallest. Given a texel location, depth, and area to be sampled, the mipmaps can be used to rapidly determine fully lit and fully shadowed conditions. For example, if the texel's z-depth is greater than the maximum z-depth stored for the corresponding area of the mipmap, then the texel must be in shadow-no further samples are needed. This type of shadow map makes the task of determining light visibility much more efficient .
@@ -32,6 +29,7 @@ Methods such as PCF work by sampling the nearby receiver locations. PCSS works b
 Several researchers have explored *backprojection* using the GPU. The idea is to treat each receiver's location as a viewpoint and the area light source as part of a view plane, and to project occluders onto this plane. Both Schwarz and Stamminger  and Guennebaud et al.  summarize previous work and offer their own improvements.
 
 Bavoil et al.  take a different approach, using depth peeling to create a multi-layer shadow map. Backprojection algorithms can give excellent results, but the high cost per pixel has (so far) meant they have not seen adoption in interactive applications.
+
 <!--
 regex:\[\d+(?:,\s*\d+)*\]
 ## Lists

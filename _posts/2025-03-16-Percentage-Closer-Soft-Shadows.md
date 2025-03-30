@@ -18,6 +18,10 @@ where $d_r$ is the distance of the receiver from the light and $d_o$ the average
 
 If there are no occluders found, the location is fully lit and no further processing is necessary. Similarly, if the location is fully occluded, processing can end. Otherwise, then the area of interest is sampled and the light's approximate contribution is computed. To save on processing costs, the width of the sample area can be used to vary the number of samples taken. Other techniques can be implemented, e.g., using lower sampling rates for distant soft shadows that are less likely to be important.
 
+A drawback of this method is that it needs to sample a fair-sized area of the shadow map to find the occluders. Using a rotated Poisson disk pattern can help hide undersampling artifacts . Jimenez  notes that Poisson sampling can be unstable under motion and finds that a spiral pattern formed by using a function halfway between dithering and random gives a better result frame to frame.
+
+Sikachev et al.  discuss in detail a faster implementation of PCSS using features in SM 5.0, introduced by AMD and often called by their name for it, *contact hardening shadows* (CHS). This new version also addresses another problem with basic PCSS: The penumbra's size is affected by the shadow map's resolution. This problem is minimized by first generating mipmaps of the shadow map, then choosing the mip level closest to a user-defined world-space kernel size. An 8 ¡ß 8 area is sampled to find the average blocker depth, needing only 16 $GatherRed()$ texture calls. Once a penumbra estimate is found, the higher-resolution mip levels are used for the sharp area of the shadow, while the lower-resolution mip levels are used
+for softer areas.
 
 <!--
 regex:\[\d+(?:,\s*\d+)*\]

@@ -21,6 +21,7 @@ To avoid having to rely on fixed slice setups, more adaptive techniques have bee
 The adaptive volumetric shadow mapping method was used for realistic smoke rendering in the game GRID2, with the average cost being below 2 ms/frame . Furst et al.  describe and provide code for their implementation of deep shadow maps for a video game. They use linked lists to store depths and alphas, and use exponential shadow mapping to provide a soft transition between lit and shadowed regions.
 
 Exploration of shadow algorithms continues, with a synthesis of a variety of algorithms and techniques becoming more common. For example, Selgrad et al.  research storing multiple transparent samples with linked lists and using compute shaders with scattered writes to build the map. Their work uses deep shadow-map concepts, along with filtered maps and other elements, which give a more general solution for providing high-quality soft shadows.
+
 <!--
 regex:\[\d+(?:,\s*\d+)*\]
 ## Lists

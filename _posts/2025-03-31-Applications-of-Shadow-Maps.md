@@ -1,6 +1,6 @@
 ---
 title: "Other Applications of Shadow Maps | Real-time Rendering Chapter 7.10"
-date: 2025-03-30 00:02:00 +0200
+date: 2025-03-31 00:02:00 +0200
 categories: [RTR4,Shadows]
 math: true
 mermaid: true

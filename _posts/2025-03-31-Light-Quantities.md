@@ -29,7 +29,10 @@ In radiometry, the basic unit is *radiant flux*, $\Phi$. Radiant flux is the flo
 
 *Irradiance* is the density of radiant flux with respect to area, i.e., d¦µ/dA. Irradiance is defined with respect to an area, which may be an imaginary area in space, but is most often the surface of an object. It is measured in watts per square meter.
 
-Before we get to the next quantity, we need to first introduce the concept of a solid angle, which is a three-dimensional extension of the concept of an angle. An angle can be thought of as a measure of the size of a continuous set of directions in a plane, with a value in radians equal to the length of the arc this set of directions intersects on an enclosing circle with radius 1. Similarly, a solid angle measures the size of a continuous set of directions in three-dimensional space, measured in steradians (abbreviated ¡Èsr¡É), which are defined by the area of the intersection patch on an enclosing sphere with radius 1 [544]. Solid angle is represented by the symbol $\omega$.
+Before we get to the next quantity, we need to first introduce the concept of a *solid angle*, which is a three-dimensional extension of the concept of an angle. An angle can be thought of as a measure of the size of a continuous set of directions in a plane, with a value in radians equal to the length of the arc this set of directions intersects on an enclosing circle with radius 1. Similarly, a solid angle measures the size of a continuous set of directions in three-dimensional space, measured in *steradians* (abbreviated ¡Èsr¡É), which are defined by the area of the intersection patch on an enclosing sphere with radius 1 [544]. Solid angle is represented by the symbol $\omega$. In two dimensions, an angle of 2¦Ð radians covers the whole unit circle. Extending this to three dimensions, a solid angle of 4¦Ð steradians would cover the whole area of the unit sphere.
+
+Now we can introduce *radiant intensity*, I, which is flux density with respect to direction?more precisely, solid angle ($\frac{d\Phi}{d\omega}$). It is measured in watts per steradian.
+
 <!--
 regex:\[\d+(?:,\s*\d+)*\]
 ## Lists

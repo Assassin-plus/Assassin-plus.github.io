@@ -39,8 +39,42 @@ Radiance is what sensors, such as eyes or cameras, measure (see Section 9.2 for 
 
 The radiance in an environment can be thought of as a function of five variables (or six, including wavelength), called the *radiance distribution* [400]. Three of the variables specify a location, the other two a direction. This function describes all light traveling anywhere in space. One way to think of the rendering process is that the eye and screen define a point and a set of directions (e.g., a ray going through each pixel), and this function is evaluated at the eye for each direction. Image-based rendering, discussed in Section 13.4, uses a related concept, called the *light field*.
 
-In shading equations, radiance often appears in the form $L_o(x, \vec{d})$ or $L_i(x, \vec{d})$, which mean radiance going out from the point $x$ or entering into it, respectively. The direction vector $\vec{d}$ indicates the ray¡Çs direction, which by convention always points away from $x$. While this convention may be somewhat confusing in the case of $L_i$, since $d$ points in the opposite direction to the light propagation, it is convenient for calculations such as dot products.
+In shading equations, radiance often appears in the form $L_o(x, \vec{d})$ or $L_i(x, \vec{d})$, which mean radiance going out from the point $x$ or entering into it, respectively. 
 
+> The direction vector $\vec{d}$ indicates the ray's direction, which by convention always points away from $x$. While this convention may be somewhat confusing in the case of $L_i$, since $d$ points in the opposite direction to the light propagation, it is convenient for calculations such as dot products.
+{: .prompt-warning }
+
+An important property of radiance is that it is not affected by distance, ignoring atmospheric effects such as fog. In other words, a surface will have the same radiance regardless of its distance from the viewer. The surface covers fewer pixels when more distant, but the radiance from the surface at each pixel is constant.
+
+Most light waves contain a mixture of many different wavelengths. This is typically visualized as a *spectral power distribution* (SPD), which is a plot showing how the light's energy is distributed across different wavelengths. Clearly, human eyes make for poor spectrometers. We will discuss color vision in detail in Section 8.1.3. All radiometric quantities have spectral distributions. Since these distributions are densities over wavelength, their units are those of the original quantity divided by nanometers. For example, the spectral distribution of irradiance has units of watts per square meter per nanometer.
+
+Since full SPDs are unwieldy to use for rendering, especially at interactive rates, in practice radiometric quantities are represented as RGB triples. In Section 8.1.3 we will explain how these triples relate to spectral distributions.
+
+## Photometry
+
+Radiometry deals purely with physical quantities, without taking account of human perception. A related field, *photometry*, is like radiometry, except that it weights everything by the sensitivity of the human eye. The results of radiometric computations are converted to photometric units by multiplying by the *CIE photometric curve*, a bell-shaped curve centered around 555 nm that represents the eye's response to various wavelengths of light.
+
+> The full and more accurate name is the "CIE photopic spectral luminous efficiency curve." The word "photopic" refers to lighting conditions brighter than 3.4 candelas per square meter?twilight or brighter. Under these conditions the eye's cone cells are active. There is a corresponding "scotopic" CIE curve, centered around 507 nm, that is for when the eye has become dark-adapted to below 0.034 candelas per square meter?a moonless night or darker. The rod cells are active under these conditions.
+{: .prompt-info }
+
+![fig8.4](images/fig8.4.png)
+
+The conversion curve and the units of measurement are the only difference between the theory of photometry and the theory of radiometry. Each radiometric quantity has an equivalent metric photometric quantity. The Table below shows the names and units of each. The units all have the expected relationships (e.g., lux is lumens per square meter). Although logically the lumen should be the basic unit, historically the candela was defined as a basic unit and the other units were derived from it. In North America, lighting designers measure illuminance using the deprecated Imperial unit of measurement, called the foot-candle (fc), instead of lux. In either case, illuminance is what most light meters measure, and it is important in illumination engineering.
+
+| Radiometric Quantity: Units | Photometric Quantity: Units |
+| --- | --- |
+| radiant flux : W | luminous flux : lumen (lm) |
+| irradiance : $W/m^2$ | illuminance : lux (lx) |
+| radiant intensity : $W/sr$ | luminous intensity : candela (cd) |
+| radiance : $W/m^2/sr$ | luminance : candela per square meter (cd/m2= nit) |
+
+Luminance is often used to describe the brightness of flat surfaces. For example, high dynamic range (HDR) television screens' peak brightness typically ranges from about 500 to 1000 nits. In comparison, clear sky has a luminance of about 8000 nits, a 60-watt bulb about 120,000 nits, and the sun at the horizon 600,000 nits.
+
+## Colorimetry
+
+In Section 8.1.1 we have seen that our perception of the color of light is strongly connected to the light's SPD (spectral power distribution). We also saw that this is not a simple one-to-one correspondence. *Colorimetry* deals with the relationship between spectral power distributions and the perception of color
+
+## Radiance
 <!--
 regex:\[\d+(?:,\s*\d+)*\]
 ## Lists

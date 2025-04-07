@@ -21,15 +21,15 @@ Radiometric quantities exist for measuring various aspects of electromagnetic ra
 | Name | Symbol | Units | 
 | --- | --- | --- |
 | radiant flux | $\Phi$ | W (watts) |
-| irradiance | $E$ | W/m? |
+| irradiance | $E$ | W/m |
 | radiant intensity | $I$ | W/sr (watts per steradian) |
-| radiance | $L$ | W/(m? sr) |
+| radiance | $L$ | W/(m * sr) |
 
 In radiometry, the basic unit is *radiant flux*, $\Phi$. Radiant flux is the flow of radiant energy over time?power?measured in watts (W).
 
-*Irradiance* is the density of radiant flux with respect to area, i.e., d¦µ/dA. Irradiance is defined with respect to an area, which may be an imaginary area in space, but is most often the surface of an object. It is measured in watts per square meter.
+*Irradiance* is the density of radiant flux with respect to area, i.e., $d\Phi/dA$. Irradiance is defined with respect to an area, which may be an imaginary area in space, but is most often the surface of an object. It is measured in watts per square meter.
 
-Before we get to the next quantity, we need to first introduce the concept of a *solid angle*, which is a three-dimensional extension of the concept of an angle. An angle can be thought of as a measure of the size of a continuous set of directions in a plane, with a value in radians equal to the length of the arc this set of directions intersects on an enclosing circle with radius 1. Similarly, a solid angle measures the size of a continuous set of directions in three-dimensional space, measured in *steradians* (abbreviated "sr"), which are defined by the area of the intersection patch on an enclosing sphere with radius 1 [544]. Solid angle is represented by the symbol $\omega$. In two dimensions, an angle of 2¦Ð radians covers the whole unit circle. Extending this to three dimensions, a solid angle of 4¦Ð steradians would cover the whole area of the unit sphere.
+Before we get to the next quantity, we need to first introduce the concept of a *solid angle*, which is a three-dimensional extension of the concept of an angle. An angle can be thought of as a measure of the size of a continuous set of directions in a plane, with a value in radians equal to the length of the arc this set of directions intersects on an enclosing circle with radius 1. Similarly, a solid angle measures the size of a continuous set of directions in three-dimensional space, measured in *steradians* (abbreviated "sr"), which are defined by the area of the intersection patch on an enclosing sphere with radius 1 . Solid angle is represented by the symbol $\omega$. In two dimensions, an angle of $2\pi$ radians covers the whole unit circle. Extending this to three dimensions, a solid angle of $4\pi$ steradians would cover the whole area of the unit sphere.
 
 Now we can introduce *radiant intensity*, I, which is flux density with respect to direction?more precisely, solid angle ($\frac{d\Phi}{d\omega}$). It is measured in watts per steradian.
 
@@ -37,7 +37,7 @@ Finally, *radiance*, $L$, is a measure of electromagnetic radiation in a single 
 
 Radiance is what sensors, such as eyes or cameras, measure (see Section 9.2 for more details), so it is of prime importance for rendering. The purpose of evaluating a shading equation is to compute the radiance along a given ray, from the shaded surface point to the camera. The value of $L$ along that ray is the physically based equivalent of the quantity $c_{shaded}$ in Chapter 5. The metric units of radiance are watts per square meter per steradian.
 
-The radiance in an environment can be thought of as a function of five variables (or six, including wavelength), called the *radiance distribution* [400]. Three of the variables specify a location, the other two a direction. This function describes all light traveling anywhere in space. One way to think of the rendering process is that the eye and screen define a point and a set of directions (e.g., a ray going through each pixel), and this function is evaluated at the eye for each direction. Image-based rendering, discussed in Section 13.4, uses a related concept, called the *light field*.
+The radiance in an environment can be thought of as a function of five variables (or six, including wavelength), called the *radiance distribution* . Three of the variables specify a location, the other two a direction. This function describes all light traveling anywhere in space. One way to think of the rendering process is that the eye and screen define a point and a set of directions (e.g., a ray going through each pixel), and this function is evaluated at the eye for each direction. Image-based rendering, discussed in Section 13.4, uses a related concept, called the *light field*.
 
 In shading equations, radiance often appears in the form $L_o(x, \vec{d})$ or $L_i(x, \vec{d})$, which mean radiance going out from the point $x$ or entering into it, respectively. 
 

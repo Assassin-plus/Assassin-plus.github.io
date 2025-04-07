@@ -17,11 +17,17 @@ One last method worth a mention is rendering *screen-space shadows*. Shadow maps
 To **summarize** this whole chapter, shadow mapping in some form is by far the most common algorithm used for shadows cast onto arbitrary surface shapes. 
 
 - Cascaded shadow maps improve sampling quality when shadows are cast in a large area, such as an outdoor scene. 
+
 - Finding a good maximum distance for the near plane via SDSM can further improve precision. 
+
 - Percentage-closer filtering (PCF) gives some softness to the shadows, 
+
 - percentage-closer soft shadows (PCSS) and its variants give contact hardening,
+
 - and the irregular z-buffer can provide precise hard shadows. 
+
 - Filtered shadow maps provide rapid soft-shadow computation and work particularly well when the occluder is far from the receiver, as with terrain. 
+
 - Finally, screen-space techniques can be used for additional precision, though at a noticeable cost.
 
 In this chapter, we have focused on key concepts and techniques currently used in applications. Each has its own strengths, and choices depend on world size, composition (static content versus animated), material types (opaque, transparent, hair, or smoke), and number and type of lights (static or dynamic; local or distant; point, spot, or area), as well as factors such as how well the underlying textures can hide any artifacts. GPU capabilities evolve and improve, so we expect to continue seeing new algorithms that map well to the hardware appear in the years ahead. For example, the sparse-texture technique described in Section 19.10.1 has been applied to shadowmap storage to improve resolution . In an inventive approach, Sintorn, Kè´£mpe, and others  explore the idea of converting a two-dimensional shadow map for a light into a three-dimensional set of voxels (small boxes; see Section 13.10). An advantage of using a voxel is that it can be categorized as lit or in shadow, thus needing minimal storage. A highly compressed sparse voxel octree representation stores shadows for a huge number of lights and static occluders. Scandolo et al.  combine their compression technique with an interval-based scheme using dual shadow maps, giving still higher compression rates. Kasyan  uses voxel cone tracing (Section 13.10) to generate soft shadows from area lights.

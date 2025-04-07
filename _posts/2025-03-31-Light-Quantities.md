@@ -72,9 +72,9 @@ Luminance is often used to describe the brightness of flat surfaces. For example
 
 ## Colorimetry
 
-In Section 8.1.1 we have seen that our perception of the color of light is strongly connected to the light's SPD (spectral power distribution). We also saw that this is not a simple one-to-one correspondence. *Colorimetry* deals with the relationship between spectral power distributions and the perception of color
+In Section 8.1.1 we have seen that our perception of the color of light is strongly connected to the light's SPD (spectral power distribution). We also saw that this is not a simple one-to-one correspondence. *Colorimetry* deals with the relationship between spectral power distributions and the perception of color.
 
-## Radiance
+
 <!--
 regex:\[\d+(?:,\s*\d+)*\]
 ## Lists

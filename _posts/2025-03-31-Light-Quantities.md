@@ -74,6 +74,52 @@ Luminance is often used to describe the brightness of flat surfaces. For example
 
 In Section 8.1.1 we have seen that our perception of the color of light is strongly connected to the light's SPD (spectral power distribution). We also saw that this is not a simple one-to-one correspondence. *Colorimetry* deals with the relationship between spectral power distributions and the perception of color.
 
+Humans can distinguish about 10 million different colors. For color perception, the eye works by having three different types of cone receptors in the retina, with each type of receptor responding differently to various wavelengths. Other animals have varying numbers of color receptors, in some cases as many as fifteen . So, for a given SPD, our brain receives only three different signals from these receptors. This is why just three numbers can be used to precisely represent any color stimulus .
+
+But what three numbers? A set of standard conditions for measuring color was proposed by the CIE (*Commission Internationale d'Eclairage*), and color-matching experiments were performed using them. In color matching, three colored lights are projected on a white screen so that their colors add together and form a patch. A test color to match is projected next to this patch. The test color patch is of a single wavelength. The observer can then change the three colored lights using knobs calibrated to a range weighted [?1, 1] until the test color is matched. A negative weight is needed to match some test colors, and such a weight means that the corresponding light is added instead to the wavelength's test color patch. One set of test results for three lights, called r, g, and b, is shown in Figure 8.5. The lights were almost monochromatic, with the energy distribution of each narrowly clustered around one of the following wavelengths: 645 nm for r, 526 nm for g, and 444 nm for b. The functions relating each set of matching weights to the test patch wavelengths are called *color-matching functions*.
+
+![fig8.5](/images/fig8.5.png)
+> The r, g, and b 2-degree color-matching curves, from Stiles and Burch . These color-matching curves are not to be confused with the spectral distributions of the light sources used in the color-matching experiment, which are pure wavelengths.
+{: .prompt-info }
+
+What these functions give is a way to convert a spectral power distribution to three values. Given a single wavelength of light, the three colored light settings can be read off the graph, the knobs set, and lighting conditions created that will give an identical sensation from both patches of light on the screen. For an arbitrary spectral distribution, the color-matching functions can be multiplied by the distribution and the area under each resulting curve (i.e., the integral) gives the relative amounts to set the colored lights to match the perceived color produced by the spectrum. Considerably different spectral distributions can resolve to the same three weights, i.e., they look the same to an observer. Spectral distributions that give matching weights are called *metamers*.
+
+The three weighted r, g, and b lights cannot directly represent all visible colors, as their color-matching functions have negative weights for various wavelengths. The CIE proposed three different hypothetical light sources with color-matching functions that are positive for all visible wavelengths. These curves are linear combinations of the original r, g, and b color-matching functions. This requires their spectral power distributions of the light sources to be negative at some wavelengths, so these lights are *unrealizable* mathematical abstractions. Their color-matching functions are denoted $\overline{x}(\lambda)$, $\overline{y}(\lambda)$, and $\overline{z}(\lambda)$, and are shown in Figure 8.6. The color-matching function $\overline{y}(\lambda)$ is the same as the photometric curve (Figure 8.4), as radiance is converted to luminance with this curve.
+
+![fig8.6](/images/fig8.6.png)
+> The Judd-Vos-modified CIE (1978) 2-degree color-matching functions. Note that the two x's are part of the same curve.
+{: .prompt-info }
+
+As with the previous set of color-matching functions, $\overline{x}(\lambda)$, $\overline{y}(\lambda)$, and $\overline{z}(\lambda)$ are used to reduce any SPD $s(\lambda)$ to three numbers via multiplication and integration:
+
+$$X = \int_{380}^{780}s(\lambda)\overline{x}(\lambda)d\lambda$$
+
+These X, Y , and Z *tristimulus values* are weights that define a color in CIE XYZ space. 
+
+![fig8.7](/images/fig8.7.png)
+> The RGB color cube for the CIE RGB primaries is shown in XYZ space, along with its projection (in violet) onto the X + Y + Z = 1 plane. The blue outline encloses the space of possible chromaticity values. Each line radiating from the origin has a constant chromaticity value, varying only in luminance.
+{: .prompt-info }
+
+It is often convenient to separate colors into luminance (brightness) and *chromaticity*. Chromaticity is the character of a color independent of its brightness. For example, two shades of blue, one dark and one light, can have the same chromaticity despite differing in luminance.
+
+For this purpose, the CIE defined a two-dimensional chromaticity space by projecting colors onto the $X + Y + Z = 1$ plane. See Figure 8.7. Coordinates in this space are called $x$ and $y$, and are computed as follows:
+
+$$x = \frac{X}{X + Y + Z}$$
+
+$$y = \frac{Y}{X + Y + Z}$$
+
+$$z = \frac{Z}{X + Y + Z} = 1 - x - y$$
+
+The $z$ value gives no additional information, so it is normally omitted. The plot of the *chromaticity coordinates* $x$ and $y$ values is known as the *CIE 1931 chromaticity diagram*. See Figure 8.8. The curved outline in the diagram shows where the colors of the visible spectrum lie, and the straight line connecting the ends of the spectrum is called the *purple line*. The black dot shows the chromaticity of illuminant D65, which is a frequently used *white point*--a chromaticity used to define the white or *achromatic* (colorless) stimulus.
+
+![fig8.8](/images/fig8.8.png)
+> The CIE 1931 chromaticity diagram. The curve is labeled with the wavelengths of the corresponding pure colors. The white triangle and black dot show the gamut and white point, respectively, used for the sRGB and Rec. 709 color spaces.
+
+To summarize, we began with an experiment that used three single-wavelength lights and measured how much of each was needed to match the appearance of some other wavelength of light. Sometimes these pure lights had to be added to the sample being viewed in order to match. This gave one set of color-matching functions, which were combined to create a new set without negative values. With this non-negative set of color-matching functions in hand, we can convert any spectral distribution to an XYZ coordinate that defines a color's chromaticity and luminance, which can be reduced to $xy$ to describe just the chromaticity, keeping luminance constant.
+
+Given a color point $(x, y)$, draw a line from the white point through this point to the boundary (spectral or purple line). The relative distance of the color point compared to the distance to the edge of the region is the *excitation purity* of the color. The point on the region edge defines the *dominant wavelength*. These colorimetric terms are rarely encountered in graphics. Instead, we use *saturation* and *hue*, which correlate loosely with excitation purity and dominant wavelength, respectively. More precise definitions of saturation and hue can be found in books by Stone  and others .
+
+The chromaticity diagram describes a plane. The third dimension needed to fully describe a color is the $Y$ value, luminance. These then define what is called the $xyY$-coordinate system. The chromaticity diagram is important in understanding how color is used in rendering, and the limits of the rendering system. A television or computer monitor presents colors by using some settings of R, G, and B color values. Each color channel controls a *display primary* that emits light with a particular spectral power distribution. Each of the three primaries is scaled by its respective color value, and these are added together to create a single spectral power distribution that the viewer perceives.
 
 <!--
 regex:\[\d+(?:,\s*\d+)*\]

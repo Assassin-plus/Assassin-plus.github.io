@@ -127,6 +127,7 @@ There are several RGB spaces of interest in rendering, each defined by R, G, and
 
 ![figure 8.9](/images/fig8.9.png)
 > A CIE 1976 UCS diagram showing the primaries and white points of three RGB color spaces: sRGB, DCI-P3, and ACEScg. The sRGB plot can be used for Rec. 709 as well, since the two color spaces have the same primaries and white point.
+{: .prompt-info }
 
 <!--
 regex:\[\d+(?:,\s*\d+)*\]

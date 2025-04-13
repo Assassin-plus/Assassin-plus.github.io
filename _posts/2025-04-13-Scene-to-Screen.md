@@ -16,6 +16,7 @@ The next few chapters in this book are focused on the problem of physically base
 
 The material in this section builds upon Section 5.6, which covers display encoding. We decided to defer coverage of high dynamic range (HDR) displays to this section, since it requires background on topics, such as color gamuts, that had not yet been discussed in that part of the book (RTR4).
 
+
 Section 5.6 discussed display encoding for standard dynamic range (**SDR**) monitors, which typically use the sRGB display standard, and SDR televisions, which use the Rec. 709 and Rec. 1886 standards. Both sets of standards have the same RGB gamut and white point (D65), and somewhat similar (but not identical) nonlinear display encoding curves. They also have roughly similar reference white luminance levels (80 $cd/m^2$ for sRGB, 100 $cd/m^2$ for Rec. 709/1886). These luminance specifications have not been closely adhered to by monitor and television manufacturers, who in practice tend to manufacture displays with brighter white levels .
 
 ![fig8.12](/images/fig8.12.png)
@@ -31,9 +32,10 @@ From the application side, there are three paths for transferring images to an H
 * HDR10?Widely supported on HDR displays as well as PC and console operating systems. The framebuffer format is 32 bits per pixel with 10 unsigned integer bits for each RGB channel and 2 for alpha. It uses PQ nonlinear encoding and Rec. 2020 color space. Each HDR10 display model performs its own tone mapping, one that is not standardized or documented.
 * scRGB (linear variant)?Only supported on Windows operating systems. Nominally it uses sRGB primaries and white level, though both can be exceeded since the standard supports RGB values less than 0 and greater than 1. The framebuffer format is 16-bit per channel, and stores linear RGB values. It can work with any HDR10 display since the driver converts to HDR10. It is useful primarily for convenience and backward compatibility with sRGB.
 * Dolby Vision?Proprietary format, not yet widely supported in displays or on any consoles (at the time of writing). It uses a custom 12-bit per channel framebuffer format, and uses PQ nonlinear encoding and Rec. 2020 color space. The display internal tone mapping is standardized across models (but not documented).
+
 Lottes  points out that there is actually a fourth option. If the exposure and color are adjusted carefully, then an HDR display can be driven through the regular SDR signal path with good results.
 
-With any option other than scRGB, as part of the display-encoding step the application needs to convert the pixel RGB values from the rendering working space to Rec. 2020?which requires a 3 ¡ß 3 matrix transform?and to apply the PQ encoding, which is somewhat more expensive than the Rec. 709 or sRGB encoding functions . Patry  gives an inexpensive approximation to the PQ curve. Special care is needed when compositing user interface (UI) elements on HDR displays to ensure that the user interface is legible and at a comfortable luminance level .
+With any option other than scRGB, as part of the display-encoding step the application needs to convert the pixel RGB values from the rendering working space to Rec. 2020?which requires a 3 x 3 matrix transform?and to apply the PQ encoding, which is somewhat more expensive than the Rec. 709 or sRGB encoding functions . Patry  gives an inexpensive approximation to the PQ curve. Special care is needed when compositing user interface (UI) elements on HDR displays to ensure that the user interface is legible and at a comfortable luminance level .
 
 ## Tone Mapping 
 

@@ -1,7 +1,7 @@
 ---
 title: "Scene to Screen | Real-time Rendering Chapter 8.2"
 date: 2025-04-13 00:02:00 +0200
-categories: [RTR4,Shadows]
+categories: [RTR4,Colors]
 math: true
 mermaid: true
 toc: true

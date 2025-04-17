@@ -16,7 +16,21 @@ The interactions of light and matter form the foundation of physically based sha
 
 In physical optics, light is modeled as an electromagnetic *transverse wave*, a wave that oscillates the electric and magnetic fields perpendicularly to the direction of its propagation. The oscillations of the two fields are coupled. The magnetic and electric field vectors are perpendicular to each other and the ratio of their lengths is fixed. This ratio is equal to the phase velocity, which we will discuss later.
 
+As we have seen in Section 8.1, the perceived color of light is strongly related to its wavelength. For this reason, light with a single wavelength is called *monochromatic light*, which means "single-colored." However, most light waves encountered in practice are polychromatic, containing many different wavelengths.
 
+In contrast, in this book we focus on *unpolarized* light, which is much more prevalent. In unpolarized light the field oscillations are spread equally over all directions perpendicular to the propagation axis. Despite their simplicity, it is useful to understand the behavior of monochromatic, linearly polarized waves, since any light wave can be factored into a combination of such waves.
+
+If we track a point on the wave with a given phase (for example, an amplitude peak) over time, we will see it move through space at a constant speed, which is the wave's phase velocity. For a light wave traveling through a vacuum, the phase velocity is c, commonly referred to as the speed of light, about 300,000 kilometers per second.
+
+In Section 8.1.1 we discussed the fact that for visible light, the size of a single wavelength is in the range of approximately 400?700 nanometers. In optics it is often useful to talk about the size of features relative to light wavelength. In this case we would say that the width of a spider silk thread is about 2$\lambda$?3$\lambda$ (2?3 light wavelengths), and the width of a hair is about 100$\lambda$?200$\lambda$.
+
+Light waves carry energy. The density of energy flow is equal to the product of the magnitudes of the electric and magnetic fields, which is?since the magnitudes are proportional to each other?proportional to the squared magnitude of the electric field. We focus on the electric field since it affects matter much more strongly than the magnetic field. In rendering, we are concerned with the *average* energy flow over time, which is proportional to the squared wave amplitude. This average energy flow density is the *irradiance*, denoted with the letter *E*. Irradiance and its relation to other light quantities were discussed in Section 8.1.1.
+
+Depending on the relative phase relationships, coherent addition of n identical waves can result in a wave with irradiance anywhere between 0 and n2times that of an individual wave
+
+However, most often when waves are added up they are mutually incoherent, which means that their phases are relatively random. In this scenario, the amplitude of the combined wave is¢ån a, and the irradiance of the individual waves adds up linearly to n times the irradiance of one wave, as one would expect.
+
+Light waves are emitted when the electric charges in an object oscillate. Part of the energy that caused the oscillations?heat, electrical energy, chemical energy?is converted to light energy, which is radiated away from the object. In rendering, such objects are treated as light sources. We first discussed light sources in Section 5.2, and they will be described from a more physically based standpoint in Chapter 10.
 
 <!--
 regex:\[\d+(?:,\s*\d+)*\]

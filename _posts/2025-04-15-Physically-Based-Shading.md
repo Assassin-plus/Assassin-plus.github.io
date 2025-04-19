@@ -28,7 +28,7 @@ Light waves carry energy. The density of energy flow is equal to the product of 
 
 Depending on the relative phase relationships, coherent addition of n identical waves can result in a wave with irradiance anywhere between 0 and n2times that of an individual wave
 
-However, most often when waves are added up they are mutually incoherent, which means that their phases are relatively random. In this scenario, the amplitude of the combined wave is¢ån a, and the irradiance of the individual waves adds up linearly to n times the irradiance of one wave, as one would expect.
+However, most often when waves are added up they are mutually incoherent, which means that their phases are relatively random. In this scenario, the amplitude of the combined wave is $\sqrt{n} a$, and the irradiance of the individual waves adds up linearly to n times the irradiance of one wave, as one would expect.
 
 Light waves are emitted when the electric charges in an object oscillate. Part of the energy that caused the oscillations?heat, electrical energy, chemical energy?is converted to light energy, which is radiated away from the object. In rendering, such objects are treated as light sources. We first discussed light sources in Section 5.2, and they will be described from a more physically based standpoint in Chapter 10.
 
@@ -59,7 +59,6 @@ Another important case is light propagating through a *homogeneous medium*, whic
 In a homogeneous medium, the scattered waves are lined up so that they interfere destructively in all directions except for the original direction of propagation. After the original wave is combined with all the waves scattered from individual molecules, the final result is the same as the original wave, except for its phase velocity and (in some cases) amplitude. The final wave does not exhibit any scattering?it has effectively been suppressed by destructive interference.
 
 The ratio of the phase velocities of the original and new waves defines an optical property of the medium called the *index of refraction* (IOR) or refractive index, denoted by the letter $n$. Some media are absorptive. They convert part of the light energy to heat, causing the wave amplitude to decrease exponentially with distance. The rate of decrease is defined by the *attenuation index*, denoted by the Greek letter $\kappa$ (kappa). Both $n$ and $\kappa$ typically vary by wavelength. Together, these two numbers fully define how the medium affects light of a given wavelength, and they are often combined into a single complex number $n + i\kappa$, called the *complex index of refraction.* The index of refraction abstracts away the molecule-level details of light interaction and enables treating the medium as a continuous volume, which is much simpler
-
 
 
 <!--

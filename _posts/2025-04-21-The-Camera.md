@@ -1,7 +1,7 @@
 ---
 title: "The Camera | Real-time Rendering Chapter 9.2"
 date: 2025-04-21 00:02:00 +0200
-categories: [RTR4,Physically Based Shading]
+categories: [RTR4]
 math: true
 mermaid: true
 toc: true

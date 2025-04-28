@@ -10,7 +10,9 @@ tags: [graphics]     # TAG names should always be lowercase
 ---
 # Illumination
 
+The $L_i(l)$ (incoming radiance) term in the reflectance equation represents light impinging upon the shaded surface point from other parts of the scene. *Global illumination* algorithms calculate $L_i(l)$ by simulating how light propagates and is reflected throughout the scene. These algorithms use the *rendering equation*, of which the reflectance equation is a special case. Global illumination is discussed in Chapter 11. In this chapter and the next, we focus on **local illumination**, which uses the reflectance equation to compute shading locally at each surface point. In local illumination algorithms $L_i(l)$ is given and does not need to be computed.
 
+In realistic scenes, $L_i(l)$ includes nonzero radiance from all directions, whether emitted directly from light sources or reflected from other surfaces. Unlike the directional and punctual lights discussed in Section 5.2, real-world light sources are *area lights* that cover a nonzero solid angle. In this chapter, we use a restricted form of $L_i(l)$ comprised of only directional and punctual lights, leaving more general lighting environments to Chapter 10. This restriction allows for a more focused discussion.
 
 
 

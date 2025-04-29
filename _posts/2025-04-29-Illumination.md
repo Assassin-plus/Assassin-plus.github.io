@@ -14,6 +14,17 @@ The $L_i(l)$ (incoming radiance) term in the reflectance equation represents lig
 
 In realistic scenes, $L_i(l)$ includes nonzero radiance from all directions, whether emitted directly from light sources or reflected from other surfaces. Unlike the directional and punctual lights discussed in Section 5.2, real-world light sources are *area lights* that cover a nonzero solid angle. In this chapter, we use a restricted form of $L_i(l)$ comprised of only directional and punctual lights, leaving more general lighting environments to Chapter 10. This restriction allows for a more focused discussion.
 
+Although punctual and directional lights are non-physical abstractions, they can be derived as approximations of physical light sources. Such a derivation is important, because it enables us to incorporate these lights in a physically based rendering framework with confidence that we understand the error involved.
+
+We take a small, distant area light and define $l_c$ as the vector pointing to its center. We also define the light's color $c_{light}$ as the reflected radiance from a white Lambertian surface facing toward the light $(n = l_c)$. This is an intuitive definition for authoring, since the color of the light corresponds directly to its visual effect.
+
+With these definitions, a directional light can be derived as the limit case of shrinking the size of the area light down to zero while maintaining the value of $c_{light}$ . In this case the integral in the reflectance equation simplifies down to a single BRDF evaluation, which is significantly less expensive to compute: $$ L_o(v) = \pi f(l_c, v) c_{light} (n \cdot l_c) $$
+
+The dot product $(n \cdot l)$ is often clamped to zero, as a convenient method of skipping contributions from lights under the surface: $$ L_o(v) = \pi f(l_c, v) c_{light} (n \cdot l_c)^+ $$
+
+Punctual lights can be treated similarly. The only differences are that the area light is not required to be distant, and $c_{light}$ falls off as the inverse square of the distance to the light. 
+
+In the case of more than one light source, Equation 9.12 is computed multiple times and the results are summed:$$ L_o(v) = \pi \Sigma_{i=1}^n f(l_{c_i}, v) c_{light_i} (n \cdot l_{c_i})^+$$
 
 
 <!--

@@ -1,6 +1,6 @@
 ---
 title: "Illumination | Real-time Rendering Chapter 9.4"
-date: 2025-04-22 00:02:00 +0200
+date: 2025-04-29 00:02:00 +0200
 categories: [RTR4]
 math: true
 mermaid: true

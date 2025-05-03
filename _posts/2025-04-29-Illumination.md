@@ -26,8 +26,7 @@ Punctual lights can be treated similarly. The only differences are that the area
 
 In the case of more than one light source, Equation 9.12 is computed multiple times and the results are summed:$$ L_o(v) = \pi \Sigma_{i=1}^n f(l_{c_i}, v) c_{light_i} (n \cdot l_{c_i})^+$$
 
-The $\pi$ factor in Equation above cancels out the $1/\pi$ factor that often appears in BRDFs. This cancellation moves the divide operation out of the shader and makes the shading equation simpler to read. However, care must be taken when adapting BRDFs from academic papers for use in real-time shading equations.
-Typically, the BRDF will need to be multiplied by $\pi$ before use.
+The $\pi$ factor in Equation above cancels out the $1/\pi$ factor that often appears in BRDFs. This cancellation moves the divide operation out of the shader and makes the shading equation simpler to read. However, care must be taken when adapting BRDFs from academic papers for use in real-time shading equations. Typically, the BRDF will need to be multiplied by $\pi$ before use.
 
 <!--
 regex:\[\d+(?:,\s*\d+)*\]

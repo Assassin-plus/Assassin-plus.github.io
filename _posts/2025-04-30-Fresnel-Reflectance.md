@@ -1,6 +1,6 @@
 ---
 title: "Fresnel Reflectance | Real-time Rendering Chapter 9.5"
-date: 2025-04-29 00:02:00 +0200
+date: 2025-04-30 00:02:00 +0200
 categories: [RTR4]
 math: true
 mermaid: true

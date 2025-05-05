@@ -9,7 +9,6 @@ tip: true
 tags: [graphics]     # TAG names should always be lowercase
 ---
 
-[toc]
 
 # Microgeometry
 
@@ -26,7 +25,7 @@ Figure 9.25 shows how visible reflectance results from the aggregate reflections
 
 For most surfaces, the distribution of the microscale surface normals is isotropic, meaning it is rotationally symmetrical, lacking any inherent directionality. Other surfaces have microscale structure that is anisotropic. Such surfaces have anisotropic surface normal distributions, leading to directional blurring of reflections and highlights.
 
-Some surfaces have highly structured microgeometry, resulting in a variety of microscale normal distributions and surface appearances. Fabrics are a commonly encountered example?the unique appearance of velvet and satin is due to the structure of their microgeometry [78]. Fabric models will be discussed in Section 9.10.
+Some surfaces have highly structured microgeometry, resulting in a variety of microscale normal distributions and surface appearances. Fabrics are a commonly encountered example?the unique appearance of velvet and satin is due to the structure of their microgeometry . Fabric models will be discussed in Section 9.10.
 
 Although multiple surface normals are the primary effect of microgeometry on reflectance, other effects can also be important. ***Shadowing*** refers to occlusion of the light source by microscale surface detail, as shown on the left side of Figure 9.27. ***Masking***, where some facets hide others from the camera, is shown in the center of the figure.
 
@@ -40,7 +39,7 @@ If there is a correlation between the microgeometry height and the surface norma
 >Figure 9.28. The microgeometry shown has a strong correlation between height and surface normal, where the raised areas are smooth and lower areas are rough. In the top image, the surface is illuminated from an angle close to the macroscopic surface normal. At this angle, the rough pits are accessible to many of the incoming light rays, and so many rays are scattered in different directions. In the bottom image, the surface is illuminated from a glancing angle. Shadowing blocks most of the pits, so few light rays hit them, and most rays are reflected from the smooth parts of the surface. In this case, the apparent roughness depends strongly on the angle of illumination.
 {: .prompt-info }
 
-For all surface types, the visible size of the surface irregularities decreases as the incoming angle ¦Èito the normal increases. At extremely glancing angles, this effect can decrease the viewed size of the irregularities to be shorter than the light's wavelength, making them "disappear" as far as the light response is concerned. These two effects combine with the Fresnel effect to make surfaces appear highly reflective and mirrorlike as the viewing and lighting angles approach $90^\circ$[79, 1873, 1874].
+For all surface types, the visible size of the surface irregularities decreases as the incoming angle ¦Èito the normal increases. At extremely glancing angles, this effect can decrease the viewed size of the irregularities to be shorter than the light's wavelength, making them "disappear" as far as the light response is concerned. These two effects combine with the Fresnel effect to make surfaces appear highly reflective and mirrorlike as the viewing and lighting angles approach $90^\circ$.
 
 Confirm this for yourself. Roll a sheet of non-shiny paper into a long tube. Instead of looking through the hole, move your eye slightly higher, so you are looking down its length. Point your tube toward a brightly lit window or computer screen. With your view angle nearly parallel to the paper you will see a sharp reflection of the window or screen in the paper. The angle has to be extremely close to 90?to see the effect.
 
@@ -51,6 +50,7 @@ So far we have discussed the effects of microgeometry on specular reflectance, i
 ![Fig9.29](/images/fig9.29.png)
 > Figure 9.29. Retroreflection due to microscale roughness. Both figures show a rough surface with low Fresnel reflectance and high scattering albedo, so subsurface reflectance is visually important. On the left, the viewing and lighting directions are similar. The parts of the microgeometry that are brightly lit are also the ones that are most visible, leading to a bright appearance. On the right, the viewing and lighting directions differ greatly. In this case, the brightly lit areas are occluded from view and the visible areas are shadowed, leading to a darker appearance.
 {: .prompt-info }
+
 
 <!--
 regex:\[\d+(?:,\s*\d+)*\]

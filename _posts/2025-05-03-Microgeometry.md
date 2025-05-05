@@ -9,7 +9,7 @@ tip: true
 tags: [graphics]     # TAG names should always be lowercase
 ---
 
-[toc]
+[TOC]
 
 # Microgeometry
 
